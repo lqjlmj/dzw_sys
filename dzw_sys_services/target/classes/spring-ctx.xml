@@ -44,10 +44,6 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:/mapper/*.xml</value>
-				<value>classpath:/mapper/lqj/*.xml</value>
-				<value>classpath:/mapper/lmf/*.xml</value>
-				<value>classpath:/mapper/zch/*.xml</value>
-				<value>classpath:/mapper/wss/*.xml</value>
 			</list>
 		</property>
 	</bean>
