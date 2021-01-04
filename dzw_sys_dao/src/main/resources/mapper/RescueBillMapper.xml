@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.RescueBillMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.RescueBill" >
+    <id column="rescuebillid" property="rescuebillid" jdbcType="INTEGER" />
+    <result column="clearingformid" property="clearingformid" jdbcType="INTEGER" />
+    <result column="shifstid" property="shifstid" jdbcType="INTEGER" />
+    <result column="uvehicleid" property="uvehicleid" jdbcType="INTEGER" />
+    <result column="armemberid" property="armemberid" jdbcType="INTEGER" />
+    <result column="artisansid" property="artisansid" jdbcType="INTEGER" />
+    <result column="servicestateid" property="servicestateid" jdbcType="INTEGER" />
+    <result column="settleid" property="settleid" jdbcType="INTEGER" />
+    <result column="rescuebillno" property="rescuebillno" jdbcType="VARCHAR" />
+    <result column="gooff" property="gooff" jdbcType="TIMESTAMP" />
+    <result column="arrivaltime" property="arrivaltime" jdbcType="TIMESTAMP" />
+    <result column="workingtime" property="workingtime" jdbcType="TIMESTAMP" />
+    <result column="rbsaddress" property="rbsaddress" jdbcType="VARCHAR" />
+    <result column="downtown" property="downtown" jdbcType="VARCHAR" />
+    <result column="finishtime" property="finishtime" jdbcType="TIMESTAMP" />
+    <result column="finishprice" property="finishprice" jdbcType="REAL" />
+    <result column="wxremarks" property="wxremarks" jdbcType="VARCHAR" />
+    <result column="resdriver" property="resdriver" jdbcType="VARCHAR" />
+    <result column="resphone" property="resphone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rescuebillid, clearingformid, shifstid, uvehicleid, armemberid, artisansid, servicestateid, 
+    settleid, rescuebillno, gooff, arrivaltime, workingtime, rbsaddress, downtown, finishtime, 
+    finishprice, wxremarks, resdriver, resphone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rescuebill
+    where rescuebillid = #{rescuebillid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rescuebill
+    where rescuebillid = #{rescuebillid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.RescueBill" >
+    insert into rescuebill (rescuebillid, clearingformid, shifstid, 
+      uvehicleid, armemberid, artisansid, 
+      servicestateid, settleid, rescuebillno, 
+      gooff, arrivaltime, workingtime, 
+      rbsaddress, downtown, finishtime, 
+      finishprice, wxremarks, resdriver, 
+      resphone)
+    values (#{rescuebillid,jdbcType=INTEGER}, #{clearingformid,jdbcType=INTEGER}, #{shifstid,jdbcType=INTEGER}, 
+      #{uvehicleid,jdbcType=INTEGER}, #{armemberid,jdbcType=INTEGER}, #{artisansid,jdbcType=INTEGER}, 
+      #{servicestateid,jdbcType=INTEGER}, #{settleid,jdbcType=INTEGER}, #{rescuebillno,jdbcType=VARCHAR}, 
+      #{gooff,jdbcType=TIMESTAMP}, #{arrivaltime,jdbcType=TIMESTAMP}, #{workingtime,jdbcType=TIMESTAMP}, 
+      #{rbsaddress,jdbcType=VARCHAR}, #{downtown,jdbcType=VARCHAR}, #{finishtime,jdbcType=TIMESTAMP}, 
+      #{finishprice,jdbcType=REAL}, #{wxremarks,jdbcType=VARCHAR}, #{resdriver,jdbcType=VARCHAR}, 
+      #{resphone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.RescueBill" >
+    insert into rescuebill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rescuebillid != null" >
+        rescuebillid,
+      </if>
+      <if test="clearingformid != null" >
+        clearingformid,
+      </if>
+      <if test="shifstid != null" >
+        shifstid,
+      </if>
+      <if test="uvehicleid != null" >
+        uvehicleid,
+      </if>
+      <if test="armemberid != null" >
+        armemberid,
+      </if>
+      <if test="artisansid != null" >
+        artisansid,
+      </if>
+      <if test="servicestateid != null" >
+        servicestateid,
+      </if>
+      <if test="settleid != null" >
+        settleid,
+      </if>
+      <if test="rescuebillno != null" >
+        rescuebillno,
+      </if>
+      <if test="gooff != null" >
+        gooff,
+      </if>
+      <if test="arrivaltime != null" >
+        arrivaltime,
+      </if>
+      <if test="workingtime != null" >
+        workingtime,
+      </if>
+      <if test="rbsaddress != null" >
+        rbsaddress,
+      </if>
+      <if test="downtown != null" >
+        downtown,
+      </if>
+      <if test="finishtime != null" >
+        finishtime,
+      </if>
+      <if test="finishprice != null" >
+        finishprice,
+      </if>
+      <if test="wxremarks != null" >
+        wxremarks,
+      </if>
+      <if test="resdriver != null" >
+        resdriver,
+      </if>
+      <if test="resphone != null" >
+        resphone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rescuebillid != null" >
+        #{rescuebillid,jdbcType=INTEGER},
+      </if>
+      <if test="clearingformid != null" >
+        #{clearingformid,jdbcType=INTEGER},
+      </if>
+      <if test="shifstid != null" >
+        #{shifstid,jdbcType=INTEGER},
+      </if>
+      <if test="uvehicleid != null" >
+        #{uvehicleid,jdbcType=INTEGER},
+      </if>
+      <if test="armemberid != null" >
+        #{armemberid,jdbcType=INTEGER},
+      </if>
+      <if test="artisansid != null" >
+        #{artisansid,jdbcType=INTEGER},
+      </if>
+      <if test="servicestateid != null" >
+        #{servicestateid,jdbcType=INTEGER},
+      </if>
+      <if test="settleid != null" >
+        #{settleid,jdbcType=INTEGER},
+      </if>
+      <if test="rescuebillno != null" >
+        #{rescuebillno,jdbcType=VARCHAR},
+      </if>
+      <if test="gooff != null" >
+        #{gooff,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivaltime != null" >
+        #{arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workingtime != null" >
+        #{workingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rbsaddress != null" >
+        #{rbsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="downtown != null" >
+        #{downtown,jdbcType=VARCHAR},
+      </if>
+      <if test="finishtime != null" >
+        #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishprice != null" >
+        #{finishprice,jdbcType=REAL},
+      </if>
+      <if test="wxremarks != null" >
+        #{wxremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="resdriver != null" >
+        #{resdriver,jdbcType=VARCHAR},
+      </if>
+      <if test="resphone != null" >
+        #{resphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.RescueBill" >
+    update rescuebill
+    <set >
+      <if test="clearingformid != null" >
+        clearingformid = #{clearingformid,jdbcType=INTEGER},
+      </if>
+      <if test="shifstid != null" >
+        shifstid = #{shifstid,jdbcType=INTEGER},
+      </if>
+      <if test="uvehicleid != null" >
+        uvehicleid = #{uvehicleid,jdbcType=INTEGER},
+      </if>
+      <if test="armemberid != null" >
+        armemberid = #{armemberid,jdbcType=INTEGER},
+      </if>
+      <if test="artisansid != null" >
+        artisansid = #{artisansid,jdbcType=INTEGER},
+      </if>
+      <if test="servicestateid != null" >
+        servicestateid = #{servicestateid,jdbcType=INTEGER},
+      </if>
+      <if test="settleid != null" >
+        settleid = #{settleid,jdbcType=INTEGER},
+      </if>
+      <if test="rescuebillno != null" >
+        rescuebillno = #{rescuebillno,jdbcType=VARCHAR},
+      </if>
+      <if test="gooff != null" >
+        gooff = #{gooff,jdbcType=TIMESTAMP},
+      </if>
+      <if test="arrivaltime != null" >
+        arrivaltime = #{arrivaltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="workingtime != null" >
+        workingtime = #{workingtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rbsaddress != null" >
+        rbsaddress = #{rbsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="downtown != null" >
+        downtown = #{downtown,jdbcType=VARCHAR},
+      </if>
+      <if test="finishtime != null" >
+        finishtime = #{finishtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishprice != null" >
+        finishprice = #{finishprice,jdbcType=REAL},
+      </if>
+      <if test="wxremarks != null" >
+        wxremarks = #{wxremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="resdriver != null" >
+        resdriver = #{resdriver,jdbcType=VARCHAR},
+      </if>
+      <if test="resphone != null" >
+        resphone = #{resphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where rescuebillid = #{rescuebillid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.RescueBill" >
+    update rescuebill
+    set clearingformid = #{clearingformid,jdbcType=INTEGER},
+      shifstid = #{shifstid,jdbcType=INTEGER},
+      uvehicleid = #{uvehicleid,jdbcType=INTEGER},
+      armemberid = #{armemberid,jdbcType=INTEGER},
+      artisansid = #{artisansid,jdbcType=INTEGER},
+      servicestateid = #{servicestateid,jdbcType=INTEGER},
+      settleid = #{settleid,jdbcType=INTEGER},
+      rescuebillno = #{rescuebillno,jdbcType=VARCHAR},
+      gooff = #{gooff,jdbcType=TIMESTAMP},
+      arrivaltime = #{arrivaltime,jdbcType=TIMESTAMP},
+      workingtime = #{workingtime,jdbcType=TIMESTAMP},
+      rbsaddress = #{rbsaddress,jdbcType=VARCHAR},
+      downtown = #{downtown,jdbcType=VARCHAR},
+      finishtime = #{finishtime,jdbcType=TIMESTAMP},
+      finishprice = #{finishprice,jdbcType=REAL},
+      wxremarks = #{wxremarks,jdbcType=VARCHAR},
+      resdriver = #{resdriver,jdbcType=VARCHAR},
+      resphone = #{resphone,jdbcType=VARCHAR}
+    where rescuebillid = #{rescuebillid,jdbcType=INTEGER}
+  </update>
+</mapper>

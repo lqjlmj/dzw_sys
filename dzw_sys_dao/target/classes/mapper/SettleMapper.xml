@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.SettleMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Settle" >
+    <id column="settleid" property="settleid" jdbcType="INTEGER" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="repairbillsno" property="repairbillsno" jdbcType="VARCHAR" />
+    <result column="settletime" property="settletime" jdbcType="TIMESTAMP" />
+    <result column="settleintegral" property="settleintegral" jdbcType="INTEGER" />
+    <result column="settlesum" property="settlesum" jdbcType="DOUBLE" />
+    <result column="closeprice" property="closeprice" jdbcType="DOUBLE" />
+    <result column="materialspr" property="materialspr" jdbcType="DOUBLE" />
+    <result column="manhourpr" property="manhourpr" jdbcType="DOUBLE" />
+    <result column="additionpr" property="additionpr" jdbcType="DOUBLE" />
+    <result column="itemprice" property="itemprice" jdbcType="DOUBLE" />
+    <result column="finallyprice" property="finallyprice" jdbcType="DOUBLE" />
+    <result column="rescueprice" property="rescueprice" jdbcType="DOUBLE" />
+    <result column="settletype" property="settletype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    settleid, eid, repairbillsno, settletime, settleintegral, settlesum, closeprice, 
+    materialspr, manhourpr, additionpr, itemprice, finallyprice, rescueprice, settletype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from settle
+    where settleid = #{settleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from settle
+    where settleid = #{settleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Settle" >
+    insert into settle (settleid, eid, repairbillsno, 
+      settletime, settleintegral, settlesum, 
+      closeprice, materialspr, manhourpr, 
+      additionpr, itemprice, finallyprice, 
+      rescueprice, settletype)
+    values (#{settleid,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{repairbillsno,jdbcType=VARCHAR}, 
+      #{settletime,jdbcType=TIMESTAMP}, #{settleintegral,jdbcType=INTEGER}, #{settlesum,jdbcType=DOUBLE}, 
+      #{closeprice,jdbcType=DOUBLE}, #{materialspr,jdbcType=DOUBLE}, #{manhourpr,jdbcType=DOUBLE}, 
+      #{additionpr,jdbcType=DOUBLE}, #{itemprice,jdbcType=DOUBLE}, #{finallyprice,jdbcType=DOUBLE}, 
+      #{rescueprice,jdbcType=DOUBLE}, #{settletype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Settle" >
+    insert into settle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="settleid != null" >
+        settleid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="repairbillsno != null" >
+        repairbillsno,
+      </if>
+      <if test="settletime != null" >
+        settletime,
+      </if>
+      <if test="settleintegral != null" >
+        settleintegral,
+      </if>
+      <if test="settlesum != null" >
+        settlesum,
+      </if>
+      <if test="closeprice != null" >
+        closeprice,
+      </if>
+      <if test="materialspr != null" >
+        materialspr,
+      </if>
+      <if test="manhourpr != null" >
+        manhourpr,
+      </if>
+      <if test="additionpr != null" >
+        additionpr,
+      </if>
+      <if test="itemprice != null" >
+        itemprice,
+      </if>
+      <if test="finallyprice != null" >
+        finallyprice,
+      </if>
+      <if test="rescueprice != null" >
+        rescueprice,
+      </if>
+      <if test="settletype != null" >
+        settletype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="settleid != null" >
+        #{settleid,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="repairbillsno != null" >
+        #{repairbillsno,jdbcType=VARCHAR},
+      </if>
+      <if test="settletime != null" >
+        #{settletime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleintegral != null" >
+        #{settleintegral,jdbcType=INTEGER},
+      </if>
+      <if test="settlesum != null" >
+        #{settlesum,jdbcType=DOUBLE},
+      </if>
+      <if test="closeprice != null" >
+        #{closeprice,jdbcType=DOUBLE},
+      </if>
+      <if test="materialspr != null" >
+        #{materialspr,jdbcType=DOUBLE},
+      </if>
+      <if test="manhourpr != null" >
+        #{manhourpr,jdbcType=DOUBLE},
+      </if>
+      <if test="additionpr != null" >
+        #{additionpr,jdbcType=DOUBLE},
+      </if>
+      <if test="itemprice != null" >
+        #{itemprice,jdbcType=DOUBLE},
+      </if>
+      <if test="finallyprice != null" >
+        #{finallyprice,jdbcType=DOUBLE},
+      </if>
+      <if test="rescueprice != null" >
+        #{rescueprice,jdbcType=DOUBLE},
+      </if>
+      <if test="settletype != null" >
+        #{settletype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Settle" >
+    update settle
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="repairbillsno != null" >
+        repairbillsno = #{repairbillsno,jdbcType=VARCHAR},
+      </if>
+      <if test="settletime != null" >
+        settletime = #{settletime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="settleintegral != null" >
+        settleintegral = #{settleintegral,jdbcType=INTEGER},
+      </if>
+      <if test="settlesum != null" >
+        settlesum = #{settlesum,jdbcType=DOUBLE},
+      </if>
+      <if test="closeprice != null" >
+        closeprice = #{closeprice,jdbcType=DOUBLE},
+      </if>
+      <if test="materialspr != null" >
+        materialspr = #{materialspr,jdbcType=DOUBLE},
+      </if>
+      <if test="manhourpr != null" >
+        manhourpr = #{manhourpr,jdbcType=DOUBLE},
+      </if>
+      <if test="additionpr != null" >
+        additionpr = #{additionpr,jdbcType=DOUBLE},
+      </if>
+      <if test="itemprice != null" >
+        itemprice = #{itemprice,jdbcType=DOUBLE},
+      </if>
+      <if test="finallyprice != null" >
+        finallyprice = #{finallyprice,jdbcType=DOUBLE},
+      </if>
+      <if test="rescueprice != null" >
+        rescueprice = #{rescueprice,jdbcType=DOUBLE},
+      </if>
+      <if test="settletype != null" >
+        settletype = #{settletype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where settleid = #{settleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Settle" >
+    update settle
+    set eid = #{eid,jdbcType=INTEGER},
+      repairbillsno = #{repairbillsno,jdbcType=VARCHAR},
+      settletime = #{settletime,jdbcType=TIMESTAMP},
+      settleintegral = #{settleintegral,jdbcType=INTEGER},
+      settlesum = #{settlesum,jdbcType=DOUBLE},
+      closeprice = #{closeprice,jdbcType=DOUBLE},
+      materialspr = #{materialspr,jdbcType=DOUBLE},
+      manhourpr = #{manhourpr,jdbcType=DOUBLE},
+      additionpr = #{additionpr,jdbcType=DOUBLE},
+      itemprice = #{itemprice,jdbcType=DOUBLE},
+      finallyprice = #{finallyprice,jdbcType=DOUBLE},
+      rescueprice = #{rescueprice,jdbcType=DOUBLE},
+      settletype = #{settletype,jdbcType=VARCHAR}
+    where settleid = #{settleid,jdbcType=INTEGER}
+  </update>
+</mapper>

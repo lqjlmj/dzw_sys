@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ArvehicleMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Arvehicle" >
+    <id column="arvehicleid" property="arvehicleid" jdbcType="INTEGER" />
+    <result column="vbrandid" property="vbrandid" jdbcType="INTEGER" />
+    <result column="vtypeid" property="vtypeid" jdbcType="INTEGER" />
+    <result column="artisansid" property="artisansid" jdbcType="INTEGER" />
+    <result column="arlicense" property="arlicense" jdbcType="VARCHAR" />
+    <result column="arvehiclekm" property="arvehiclekm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    arvehicleid, vbrandid, vtypeid, artisansid, arlicense, arvehiclekm
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from arvehicle
+    where arvehicleid = #{arvehicleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from arvehicle
+    where arvehicleid = #{arvehicleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Arvehicle" >
+    insert into arvehicle (arvehicleid, vbrandid, vtypeid, 
+      artisansid, arlicense, arvehiclekm
+      )
+    values (#{arvehicleid,jdbcType=INTEGER}, #{vbrandid,jdbcType=INTEGER}, #{vtypeid,jdbcType=INTEGER}, 
+      #{artisansid,jdbcType=INTEGER}, #{arlicense,jdbcType=VARCHAR}, #{arvehiclekm,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Arvehicle" >
+    insert into arvehicle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="arvehicleid != null" >
+        arvehicleid,
+      </if>
+      <if test="vbrandid != null" >
+        vbrandid,
+      </if>
+      <if test="vtypeid != null" >
+        vtypeid,
+      </if>
+      <if test="artisansid != null" >
+        artisansid,
+      </if>
+      <if test="arlicense != null" >
+        arlicense,
+      </if>
+      <if test="arvehiclekm != null" >
+        arvehiclekm,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="arvehicleid != null" >
+        #{arvehicleid,jdbcType=INTEGER},
+      </if>
+      <if test="vbrandid != null" >
+        #{vbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="vtypeid != null" >
+        #{vtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="artisansid != null" >
+        #{artisansid,jdbcType=INTEGER},
+      </if>
+      <if test="arlicense != null" >
+        #{arlicense,jdbcType=VARCHAR},
+      </if>
+      <if test="arvehiclekm != null" >
+        #{arvehiclekm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Arvehicle" >
+    update arvehicle
+    <set >
+      <if test="vbrandid != null" >
+        vbrandid = #{vbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="vtypeid != null" >
+        vtypeid = #{vtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="artisansid != null" >
+        artisansid = #{artisansid,jdbcType=INTEGER},
+      </if>
+      <if test="arlicense != null" >
+        arlicense = #{arlicense,jdbcType=VARCHAR},
+      </if>
+      <if test="arvehiclekm != null" >
+        arvehiclekm = #{arvehiclekm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where arvehicleid = #{arvehicleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Arvehicle" >
+    update arvehicle
+    set vbrandid = #{vbrandid,jdbcType=INTEGER},
+      vtypeid = #{vtypeid,jdbcType=INTEGER},
+      artisansid = #{artisansid,jdbcType=INTEGER},
+      arlicense = #{arlicense,jdbcType=VARCHAR},
+      arvehiclekm = #{arvehiclekm,jdbcType=VARCHAR}
+    where arvehicleid = #{arvehicleid,jdbcType=INTEGER}
+  </update>
+</mapper>

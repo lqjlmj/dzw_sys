@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.IncomeTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.IncomeType" >
+    <id column="incometypeid" property="incometypeid" jdbcType="INTEGER" />
+    <result column="incometypename" property="incometypename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    incometypeid, incometypename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from incometype
+    where incometypeid = #{incometypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from incometype
+    where incometypeid = #{incometypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.IncomeType" >
+    insert into incometype (incometypeid, incometypename)
+    values (#{incometypeid,jdbcType=INTEGER}, #{incometypename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.IncomeType" >
+    insert into incometype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="incometypeid != null" >
+        incometypeid,
+      </if>
+      <if test="incometypename != null" >
+        incometypename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="incometypeid != null" >
+        #{incometypeid,jdbcType=INTEGER},
+      </if>
+      <if test="incometypename != null" >
+        #{incometypename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.IncomeType" >
+    update incometype
+    <set >
+      <if test="incometypename != null" >
+        incometypename = #{incometypename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where incometypeid = #{incometypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.IncomeType" >
+    update incometype
+    set incometypename = #{incometypename,jdbcType=VARCHAR}
+    where incometypeid = #{incometypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ArtisansMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Artisans" >
+    <id column="artisansid" property="artisansid" jdbcType="INTEGER" />
+    <result column="gclassifyid" property="gclassifyid" jdbcType="INTEGER" />
+    <result column="artisansname" property="artisansname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    artisansid, gclassifyid, artisansname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from artisans
+    where artisansid = #{artisansid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from artisans
+    where artisansid = #{artisansid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Artisans" >
+    insert into artisans (artisansid, gclassifyid, artisansname
+      )
+    values (#{artisansid,jdbcType=INTEGER}, #{gclassifyid,jdbcType=INTEGER}, #{artisansname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Artisans" >
+    insert into artisans
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="artisansid != null" >
+        artisansid,
+      </if>
+      <if test="gclassifyid != null" >
+        gclassifyid,
+      </if>
+      <if test="artisansname != null" >
+        artisansname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="artisansid != null" >
+        #{artisansid,jdbcType=INTEGER},
+      </if>
+      <if test="gclassifyid != null" >
+        #{gclassifyid,jdbcType=INTEGER},
+      </if>
+      <if test="artisansname != null" >
+        #{artisansname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Artisans" >
+    update artisans
+    <set >
+      <if test="gclassifyid != null" >
+        gclassifyid = #{gclassifyid,jdbcType=INTEGER},
+      </if>
+      <if test="artisansname != null" >
+        artisansname = #{artisansname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where artisansid = #{artisansid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Artisans" >
+    update artisans
+    set gclassifyid = #{gclassifyid,jdbcType=INTEGER},
+      artisansname = #{artisansname,jdbcType=VARCHAR}
+    where artisansid = #{artisansid,jdbcType=INTEGER}
+  </update>
+</mapper>

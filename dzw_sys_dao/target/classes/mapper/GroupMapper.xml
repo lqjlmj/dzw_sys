@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.GroupMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Group" >
+    <id column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="deid" property="deid" jdbcType="INTEGER" />
+    <result column="groupname" property="groupname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    groupid, deid, groupname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from group
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from group
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Group" >
+    insert into group (groupid, deid, groupname
+      )
+    values (#{groupid,jdbcType=INTEGER}, #{deid,jdbcType=INTEGER}, #{groupname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Group" >
+    insert into group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupid != null" >
+        groupid,
+      </if>
+      <if test="deid != null" >
+        deid,
+      </if>
+      <if test="groupname != null" >
+        groupname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="deid != null" >
+        #{deid,jdbcType=INTEGER},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Group" >
+    update group
+    <set >
+      <if test="deid != null" >
+        deid = #{deid,jdbcType=INTEGER},
+      </if>
+      <if test="groupname != null" >
+        groupname = #{groupname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Group" >
+    update group
+    set deid = #{deid,jdbcType=INTEGER},
+      groupname = #{groupname,jdbcType=VARCHAR}
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </update>
+</mapper>

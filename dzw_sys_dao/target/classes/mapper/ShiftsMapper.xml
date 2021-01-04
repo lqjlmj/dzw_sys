@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ShiftsMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Shifts" >
+    <id column="shifstid" property="shifstid" jdbcType="INTEGER" />
+    <result column="shiftsname" property="shiftsname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shifstid, shiftsname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shifts
+    where shifstid = #{shifstid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shifts
+    where shifstid = #{shifstid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Shifts" >
+    insert into shifts (shifstid, shiftsname)
+    values (#{shifstid,jdbcType=INTEGER}, #{shiftsname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Shifts" >
+    insert into shifts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shifstid != null" >
+        shifstid,
+      </if>
+      <if test="shiftsname != null" >
+        shiftsname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shifstid != null" >
+        #{shifstid,jdbcType=INTEGER},
+      </if>
+      <if test="shiftsname != null" >
+        #{shiftsname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Shifts" >
+    update shifts
+    <set >
+      <if test="shiftsname != null" >
+        shiftsname = #{shiftsname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shifstid = #{shifstid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Shifts" >
+    update shifts
+    set shiftsname = #{shiftsname,jdbcType=VARCHAR}
+    where shifstid = #{shifstid,jdbcType=INTEGER}
+  </update>
+</mapper>

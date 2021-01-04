@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.TbeTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.TbeType" >
+    <id column="etypeid" property="etypeid" jdbcType="INTEGER" />
+    <result column="etypename" property="etypename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    etypeid, etypename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbetype
+    where etypeid = #{etypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tbetype
+    where etypeid = #{etypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.TbeType" >
+    insert into tbetype (etypeid, etypename)
+    values (#{etypeid,jdbcType=INTEGER}, #{etypename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.TbeType" >
+    insert into tbetype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="etypeid != null" >
+        etypeid,
+      </if>
+      <if test="etypename != null" >
+        etypename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="etypeid != null" >
+        #{etypeid,jdbcType=INTEGER},
+      </if>
+      <if test="etypename != null" >
+        #{etypename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.TbeType" >
+    update tbetype
+    <set >
+      <if test="etypename != null" >
+        etypename = #{etypename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where etypeid = #{etypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.TbeType" >
+    update tbetype
+    set etypename = #{etypename,jdbcType=VARCHAR}
+    where etypeid = #{etypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.GroupClassifyMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.GroupClassify" >
+    <id column="gclassifyid" property="gclassifyid" jdbcType="INTEGER" />
+    <result column="gclassifyname" property="gclassifyname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gclassifyid, gclassifyname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from groupclassify
+    where gclassifyid = #{gclassifyid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from groupclassify
+    where gclassifyid = #{gclassifyid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.GroupClassify" >
+    insert into groupclassify (gclassifyid, gclassifyname)
+    values (#{gclassifyid,jdbcType=INTEGER}, #{gclassifyname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.GroupClassify" >
+    insert into groupclassify
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gclassifyid != null" >
+        gclassifyid,
+      </if>
+      <if test="gclassifyname != null" >
+        gclassifyname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gclassifyid != null" >
+        #{gclassifyid,jdbcType=INTEGER},
+      </if>
+      <if test="gclassifyname != null" >
+        #{gclassifyname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.GroupClassify" >
+    update groupclassify
+    <set >
+      <if test="gclassifyname != null" >
+        gclassifyname = #{gclassifyname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gclassifyid = #{gclassifyid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.GroupClassify" >
+    update groupclassify
+    set gclassifyname = #{gclassifyname,jdbcType=VARCHAR}
+    where gclassifyid = #{gclassifyid,jdbcType=INTEGER}
+  </update>
+</mapper>

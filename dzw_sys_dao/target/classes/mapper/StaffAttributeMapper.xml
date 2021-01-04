@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.StaffAttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.StaffAttribute" >
+    <id column="staffaeid" property="staffaeid" jdbcType="INTEGER" />
+    <result column="staffaename" property="staffaename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    staffaeid, staffaename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from staffattribute
+    where staffaeid = #{staffaeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from staffattribute
+    where staffaeid = #{staffaeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.StaffAttribute" >
+    insert into staffattribute (staffaeid, staffaename)
+    values (#{staffaeid,jdbcType=INTEGER}, #{staffaename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.StaffAttribute" >
+    insert into staffattribute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffaeid != null" >
+        staffaeid,
+      </if>
+      <if test="staffaename != null" >
+        staffaename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffaeid != null" >
+        #{staffaeid,jdbcType=INTEGER},
+      </if>
+      <if test="staffaename != null" >
+        #{staffaename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.StaffAttribute" >
+    update staffattribute
+    <set >
+      <if test="staffaename != null" >
+        staffaename = #{staffaename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where staffaeid = #{staffaeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.StaffAttribute" >
+    update staffattribute
+    set staffaename = #{staffaename,jdbcType=VARCHAR}
+    where staffaeid = #{staffaeid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.PaymentTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.PaymentType" >
+    <id column="paymenttypeid" property="paymenttypeid" jdbcType="INTEGER" />
+    <result column="paymenttypename" property="paymenttypename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    paymenttypeid, paymenttypename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from paymenttype
+    where paymenttypeid = #{paymenttypeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from paymenttype
+    where paymenttypeid = #{paymenttypeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.PaymentType" >
+    insert into paymenttype (paymenttypeid, paymenttypename)
+    values (#{paymenttypeid,jdbcType=INTEGER}, #{paymenttypename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.PaymentType" >
+    insert into paymenttype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="paymenttypeid != null" >
+        paymenttypeid,
+      </if>
+      <if test="paymenttypename != null" >
+        paymenttypename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="paymenttypeid != null" >
+        #{paymenttypeid,jdbcType=INTEGER},
+      </if>
+      <if test="paymenttypename != null" >
+        #{paymenttypename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.PaymentType" >
+    update paymenttype
+    <set >
+      <if test="paymenttypename != null" >
+        paymenttypename = #{paymenttypename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where paymenttypeid = #{paymenttypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.PaymentType" >
+    update paymenttype
+    set paymenttypename = #{paymenttypename,jdbcType=VARCHAR}
+    where paymenttypeid = #{paymenttypeid,jdbcType=INTEGER}
+  </update>
+</mapper>

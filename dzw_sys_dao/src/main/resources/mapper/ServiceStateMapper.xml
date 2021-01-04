@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ServiceStateMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.ServiceState" >
+    <id column="servicestateid" property="servicestateid" jdbcType="INTEGER" />
+    <result column="servicestatename" property="servicestatename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    servicestateid, servicestatename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from servicestate
+    where servicestateid = #{servicestateid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from servicestate
+    where servicestateid = #{servicestateid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.ServiceState" >
+    insert into servicestate (servicestateid, servicestatename)
+    values (#{servicestateid,jdbcType=INTEGER}, #{servicestatename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.ServiceState" >
+    insert into servicestate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="servicestateid != null" >
+        servicestateid,
+      </if>
+      <if test="servicestatename != null" >
+        servicestatename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="servicestateid != null" >
+        #{servicestateid,jdbcType=INTEGER},
+      </if>
+      <if test="servicestatename != null" >
+        #{servicestatename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.ServiceState" >
+    update servicestate
+    <set >
+      <if test="servicestatename != null" >
+        servicestatename = #{servicestatename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where servicestateid = #{servicestateid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.ServiceState" >
+    update servicestate
+    set servicestatename = #{servicestatename,jdbcType=VARCHAR}
+    where servicestateid = #{servicestateid,jdbcType=INTEGER}
+  </update>
+</mapper>

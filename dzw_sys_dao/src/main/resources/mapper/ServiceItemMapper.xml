@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ServiceItemMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.ServiceItem" >
+    <id column="serviceitemid" property="serviceitemid" jdbcType="INTEGER" />
+    <result column="incometypeid" property="incometypeid" jdbcType="INTEGER" />
+    <result column="serviceitxid" property="serviceitxid" jdbcType="INTEGER" />
+    <result column="serviceitemno" property="serviceitemno" jdbcType="VARCHAR" />
+    <result column="serviceitemname" property="serviceitemname" jdbcType="VARCHAR" />
+    <result column="siremarks" property="siremarks" jdbcType="VARCHAR" />
+    <result column="cpricesl" property="cpricesl" jdbcType="DOUBLE" />
+    <result column="vipprice" property="vipprice" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    serviceitemid, incometypeid, serviceitxid, serviceitemno, serviceitemname, siremarks, 
+    cpricesl, vipprice
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from serviceitem
+    where serviceitemid = #{serviceitemid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from serviceitem
+    where serviceitemid = #{serviceitemid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.ServiceItem" >
+    insert into serviceitem (serviceitemid, incometypeid, serviceitxid, 
+      serviceitemno, serviceitemname, siremarks, 
+      cpricesl, vipprice)
+    values (#{serviceitemid,jdbcType=INTEGER}, #{incometypeid,jdbcType=INTEGER}, #{serviceitxid,jdbcType=INTEGER}, 
+      #{serviceitemno,jdbcType=VARCHAR}, #{serviceitemname,jdbcType=VARCHAR}, #{siremarks,jdbcType=VARCHAR}, 
+      #{cpricesl,jdbcType=DOUBLE}, #{vipprice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.ServiceItem" >
+    insert into serviceitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceitemid != null" >
+        serviceitemid,
+      </if>
+      <if test="incometypeid != null" >
+        incometypeid,
+      </if>
+      <if test="serviceitxid != null" >
+        serviceitxid,
+      </if>
+      <if test="serviceitemno != null" >
+        serviceitemno,
+      </if>
+      <if test="serviceitemname != null" >
+        serviceitemname,
+      </if>
+      <if test="siremarks != null" >
+        siremarks,
+      </if>
+      <if test="cpricesl != null" >
+        cpricesl,
+      </if>
+      <if test="vipprice != null" >
+        vipprice,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceitemid != null" >
+        #{serviceitemid,jdbcType=INTEGER},
+      </if>
+      <if test="incometypeid != null" >
+        #{incometypeid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceitxid != null" >
+        #{serviceitxid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceitemno != null" >
+        #{serviceitemno,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceitemname != null" >
+        #{serviceitemname,jdbcType=VARCHAR},
+      </if>
+      <if test="siremarks != null" >
+        #{siremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cpricesl != null" >
+        #{cpricesl,jdbcType=DOUBLE},
+      </if>
+      <if test="vipprice != null" >
+        #{vipprice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.ServiceItem" >
+    update serviceitem
+    <set >
+      <if test="incometypeid != null" >
+        incometypeid = #{incometypeid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceitxid != null" >
+        serviceitxid = #{serviceitxid,jdbcType=INTEGER},
+      </if>
+      <if test="serviceitemno != null" >
+        serviceitemno = #{serviceitemno,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceitemname != null" >
+        serviceitemname = #{serviceitemname,jdbcType=VARCHAR},
+      </if>
+      <if test="siremarks != null" >
+        siremarks = #{siremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cpricesl != null" >
+        cpricesl = #{cpricesl,jdbcType=DOUBLE},
+      </if>
+      <if test="vipprice != null" >
+        vipprice = #{vipprice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where serviceitemid = #{serviceitemid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.ServiceItem" >
+    update serviceitem
+    set incometypeid = #{incometypeid,jdbcType=INTEGER},
+      serviceitxid = #{serviceitxid,jdbcType=INTEGER},
+      serviceitemno = #{serviceitemno,jdbcType=VARCHAR},
+      serviceitemname = #{serviceitemname,jdbcType=VARCHAR},
+      siremarks = #{siremarks,jdbcType=VARCHAR},
+      cpricesl = #{cpricesl,jdbcType=DOUBLE},
+      vipprice = #{vipprice,jdbcType=DOUBLE}
+    where serviceitemid = #{serviceitemid,jdbcType=INTEGER}
+  </update>
+</mapper>

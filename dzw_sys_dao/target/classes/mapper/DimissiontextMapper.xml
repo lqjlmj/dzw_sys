@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.DimissiontextMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Dimissiontext" >
+    <id column="dimissionid" property="dimissionid" jdbcType="INTEGER" />
+    <result column="dimissioncause" property="dimissioncause" jdbcType="VARCHAR" />
+    <result column="dimissiondate" property="dimissiondate" jdbcType="TIMESTAMP" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    dimissionid, dimissioncause, dimissiondate, eid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dimissiontext
+    where dimissionid = #{dimissionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dimissiontext
+    where dimissionid = #{dimissionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Dimissiontext" >
+    insert into dimissiontext (dimissionid, dimissioncause, dimissiondate, 
+      eid)
+    values (#{dimissionid,jdbcType=INTEGER}, #{dimissioncause,jdbcType=VARCHAR}, #{dimissiondate,jdbcType=TIMESTAMP}, 
+      #{eid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Dimissiontext" >
+    insert into dimissiontext
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dimissionid != null" >
+        dimissionid,
+      </if>
+      <if test="dimissioncause != null" >
+        dimissioncause,
+      </if>
+      <if test="dimissiondate != null" >
+        dimissiondate,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dimissionid != null" >
+        #{dimissionid,jdbcType=INTEGER},
+      </if>
+      <if test="dimissioncause != null" >
+        #{dimissioncause,jdbcType=VARCHAR},
+      </if>
+      <if test="dimissiondate != null" >
+        #{dimissiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Dimissiontext" >
+    update dimissiontext
+    <set >
+      <if test="dimissioncause != null" >
+        dimissioncause = #{dimissioncause,jdbcType=VARCHAR},
+      </if>
+      <if test="dimissiondate != null" >
+        dimissiondate = #{dimissiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where dimissionid = #{dimissionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Dimissiontext" >
+    update dimissiontext
+    set dimissioncause = #{dimissioncause,jdbcType=VARCHAR},
+      dimissiondate = #{dimissiondate,jdbcType=TIMESTAMP},
+      eid = #{eid,jdbcType=INTEGER}
+    where dimissionid = #{dimissionid,jdbcType=INTEGER}
+  </update>
+</mapper>

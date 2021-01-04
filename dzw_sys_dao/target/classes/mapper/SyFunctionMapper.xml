@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.SyFunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.SyFunction" >
+    <id column="syfunctionid" property="syfunctionid" jdbcType="INTEGER" />
+    <result column="syfunctionname" property="syfunctionname" jdbcType="VARCHAR" />
+    <result column="syfunctioncode" property="syfunctioncode" jdbcType="VARCHAR" />
+    <result column="uplv" property="uplv" jdbcType="INTEGER" />
+    <result column="createdate" property="createdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    syfunctionid, syfunctionname, syfunctioncode, uplv, createdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from syfunction
+    where syfunctionid = #{syfunctionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from syfunction
+    where syfunctionid = #{syfunctionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.SyFunction" >
+    insert into syfunction (syfunctionid, syfunctionname, syfunctioncode, 
+      uplv, createdate)
+    values (#{syfunctionid,jdbcType=INTEGER}, #{syfunctionname,jdbcType=VARCHAR}, #{syfunctioncode,jdbcType=VARCHAR}, 
+      #{uplv,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.SyFunction" >
+    insert into syfunction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="syfunctionid != null" >
+        syfunctionid,
+      </if>
+      <if test="syfunctionname != null" >
+        syfunctionname,
+      </if>
+      <if test="syfunctioncode != null" >
+        syfunctioncode,
+      </if>
+      <if test="uplv != null" >
+        uplv,
+      </if>
+      <if test="createdate != null" >
+        createdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="syfunctionid != null" >
+        #{syfunctionid,jdbcType=INTEGER},
+      </if>
+      <if test="syfunctionname != null" >
+        #{syfunctionname,jdbcType=VARCHAR},
+      </if>
+      <if test="syfunctioncode != null" >
+        #{syfunctioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="uplv != null" >
+        #{uplv,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.SyFunction" >
+    update syfunction
+    <set >
+      <if test="syfunctionname != null" >
+        syfunctionname = #{syfunctionname,jdbcType=VARCHAR},
+      </if>
+      <if test="syfunctioncode != null" >
+        syfunctioncode = #{syfunctioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="uplv != null" >
+        uplv = #{uplv,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where syfunctionid = #{syfunctionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.SyFunction" >
+    update syfunction
+    set syfunctionname = #{syfunctionname,jdbcType=VARCHAR},
+      syfunctioncode = #{syfunctioncode,jdbcType=VARCHAR},
+      uplv = #{uplv,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=TIMESTAMP}
+    where syfunctionid = #{syfunctionid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ServiceItemTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.ServiceItemType" >
+    <id column="serviceitid" property="serviceitid" jdbcType="INTEGER" />
+    <result column="sename" property="sename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    serviceitid, sename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from serviceitemtype
+    where serviceitid = #{serviceitid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from serviceitemtype
+    where serviceitid = #{serviceitid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.ServiceItemType" >
+    insert into serviceitemtype (serviceitid, sename)
+    values (#{serviceitid,jdbcType=INTEGER}, #{sename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.ServiceItemType" >
+    insert into serviceitemtype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serviceitid != null" >
+        serviceitid,
+      </if>
+      <if test="sename != null" >
+        sename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serviceitid != null" >
+        #{serviceitid,jdbcType=INTEGER},
+      </if>
+      <if test="sename != null" >
+        #{sename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.ServiceItemType" >
+    update serviceitemtype
+    <set >
+      <if test="sename != null" >
+        sename = #{sename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where serviceitid = #{serviceitid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.ServiceItemType" >
+    update serviceitemtype
+    set sename = #{sename,jdbcType=VARCHAR}
+    where serviceitid = #{serviceitid,jdbcType=INTEGER}
+  </update>
+</mapper>

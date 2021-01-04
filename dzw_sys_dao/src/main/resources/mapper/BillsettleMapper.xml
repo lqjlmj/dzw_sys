@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.BillsettleMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Billsettle" >
+    <id column="billsettleid" property="billsettleid" jdbcType="INTEGER" />
+    <result column="repairbillsno" property="repairbillsno" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="settleemploy" property="settleemploy" jdbcType="INTEGER" />
+    <result column="settlesum" property="settlesum" jdbcType="DOUBLE" />
+    <result column="finallyprice" property="finallyprice" jdbcType="DOUBLE" />
+    <result column="closeprice" property="closeprice" jdbcType="DOUBLE" />
+    <result column="settleremark" property="settleremark" jdbcType="VARCHAR" />
+    <result column="settletype" property="settletype" jdbcType="VARCHAR" />
+    <result column="settletime" property="settletime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    billsettleid, repairbillsno, userid, settleemploy, settlesum, finallyprice, closeprice, 
+    settleremark, settletype, settletime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from billsettle
+    where billsettleid = #{billsettleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from billsettle
+    where billsettleid = #{billsettleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Billsettle" >
+    insert into billsettle (billsettleid, repairbillsno, userid, 
+      settleemploy, settlesum, finallyprice, 
+      closeprice, settleremark, settletype, 
+      settletime)
+    values (#{billsettleid,jdbcType=INTEGER}, #{repairbillsno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{settleemploy,jdbcType=INTEGER}, #{settlesum,jdbcType=DOUBLE}, #{finallyprice,jdbcType=DOUBLE}, 
+      #{closeprice,jdbcType=DOUBLE}, #{settleremark,jdbcType=VARCHAR}, #{settletype,jdbcType=VARCHAR}, 
+      #{settletime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Billsettle" >
+    insert into billsettle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billsettleid != null" >
+        billsettleid,
+      </if>
+      <if test="repairbillsno != null" >
+        repairbillsno,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="settleemploy != null" >
+        settleemploy,
+      </if>
+      <if test="settlesum != null" >
+        settlesum,
+      </if>
+      <if test="finallyprice != null" >
+        finallyprice,
+      </if>
+      <if test="closeprice != null" >
+        closeprice,
+      </if>
+      <if test="settleremark != null" >
+        settleremark,
+      </if>
+      <if test="settletype != null" >
+        settletype,
+      </if>
+      <if test="settletime != null" >
+        settletime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billsettleid != null" >
+        #{billsettleid,jdbcType=INTEGER},
+      </if>
+      <if test="repairbillsno != null" >
+        #{repairbillsno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="settleemploy != null" >
+        #{settleemploy,jdbcType=INTEGER},
+      </if>
+      <if test="settlesum != null" >
+        #{settlesum,jdbcType=DOUBLE},
+      </if>
+      <if test="finallyprice != null" >
+        #{finallyprice,jdbcType=DOUBLE},
+      </if>
+      <if test="closeprice != null" >
+        #{closeprice,jdbcType=DOUBLE},
+      </if>
+      <if test="settleremark != null" >
+        #{settleremark,jdbcType=VARCHAR},
+      </if>
+      <if test="settletype != null" >
+        #{settletype,jdbcType=VARCHAR},
+      </if>
+      <if test="settletime != null" >
+        #{settletime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Billsettle" >
+    update billsettle
+    <set >
+      <if test="repairbillsno != null" >
+        repairbillsno = #{repairbillsno,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="settleemploy != null" >
+        settleemploy = #{settleemploy,jdbcType=INTEGER},
+      </if>
+      <if test="settlesum != null" >
+        settlesum = #{settlesum,jdbcType=DOUBLE},
+      </if>
+      <if test="finallyprice != null" >
+        finallyprice = #{finallyprice,jdbcType=DOUBLE},
+      </if>
+      <if test="closeprice != null" >
+        closeprice = #{closeprice,jdbcType=DOUBLE},
+      </if>
+      <if test="settleremark != null" >
+        settleremark = #{settleremark,jdbcType=VARCHAR},
+      </if>
+      <if test="settletype != null" >
+        settletype = #{settletype,jdbcType=VARCHAR},
+      </if>
+      <if test="settletime != null" >
+        settletime = #{settletime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where billsettleid = #{billsettleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Billsettle" >
+    update billsettle
+    set repairbillsno = #{repairbillsno,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      settleemploy = #{settleemploy,jdbcType=INTEGER},
+      settlesum = #{settlesum,jdbcType=DOUBLE},
+      finallyprice = #{finallyprice,jdbcType=DOUBLE},
+      closeprice = #{closeprice,jdbcType=DOUBLE},
+      settleremark = #{settleremark,jdbcType=VARCHAR},
+      settletype = #{settletype,jdbcType=VARCHAR},
+      settletime = #{settletime,jdbcType=TIMESTAMP}
+    where billsettleid = #{billsettleid,jdbcType=INTEGER}
+  </update>
+</mapper>

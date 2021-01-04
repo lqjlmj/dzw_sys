@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.QxConnectMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.QxConnect" >
+    <id column="qxconnectid" property="qxconnectid" jdbcType="INTEGER" />
+    <result column="jurisdictionid" property="jurisdictionid" jdbcType="INTEGER" />
+    <result column="syfunctionid" property="syfunctionid" jdbcType="INTEGER" />
+    <result column="creatdate" property="creatdate" jdbcType="TIMESTAMP" />
+    <result column="createby" property="createby" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    qxconnectid, jurisdictionid, syfunctionid, creatdate, createby
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from qxconnect
+    where qxconnectid = #{qxconnectid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from qxconnect
+    where qxconnectid = #{qxconnectid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.QxConnect" >
+    insert into qxconnect (qxconnectid, jurisdictionid, syfunctionid, 
+      creatdate, createby)
+    values (#{qxconnectid,jdbcType=INTEGER}, #{jurisdictionid,jdbcType=INTEGER}, #{syfunctionid,jdbcType=INTEGER}, 
+      #{creatdate,jdbcType=TIMESTAMP}, #{createby,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.QxConnect" >
+    insert into qxconnect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="qxconnectid != null" >
+        qxconnectid,
+      </if>
+      <if test="jurisdictionid != null" >
+        jurisdictionid,
+      </if>
+      <if test="syfunctionid != null" >
+        syfunctionid,
+      </if>
+      <if test="creatdate != null" >
+        creatdate,
+      </if>
+      <if test="createby != null" >
+        createby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="qxconnectid != null" >
+        #{qxconnectid,jdbcType=INTEGER},
+      </if>
+      <if test="jurisdictionid != null" >
+        #{jurisdictionid,jdbcType=INTEGER},
+      </if>
+      <if test="syfunctionid != null" >
+        #{syfunctionid,jdbcType=INTEGER},
+      </if>
+      <if test="creatdate != null" >
+        #{creatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null" >
+        #{createby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.QxConnect" >
+    update qxconnect
+    <set >
+      <if test="jurisdictionid != null" >
+        jurisdictionid = #{jurisdictionid,jdbcType=INTEGER},
+      </if>
+      <if test="syfunctionid != null" >
+        syfunctionid = #{syfunctionid,jdbcType=INTEGER},
+      </if>
+      <if test="creatdate != null" >
+        creatdate = #{creatdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createby != null" >
+        createby = #{createby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where qxconnectid = #{qxconnectid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.QxConnect" >
+    update qxconnect
+    set jurisdictionid = #{jurisdictionid,jdbcType=INTEGER},
+      syfunctionid = #{syfunctionid,jdbcType=INTEGER},
+      creatdate = #{creatdate,jdbcType=TIMESTAMP},
+      createby = #{createby,jdbcType=VARCHAR}
+    where qxconnectid = #{qxconnectid,jdbcType=INTEGER}
+  </update>
+</mapper>

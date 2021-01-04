@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.ArmemberMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Armember" >
+    <id column="armemberid" property="armemberid" jdbcType="INTEGER" />
+    <result column="artisansid" property="artisansid" jdbcType="INTEGER" />
+    <result column="starid" property="starid" jdbcType="INTEGER" />
+    <result column="ararmemberno" property="ararmemberno" jdbcType="VARCHAR" />
+    <result column="armembername" property="armembername" jdbcType="VARCHAR" />
+    <result column="ararmembersex" property="ararmembersex" jdbcType="INTEGER" />
+    <result column="isar" property="isar" jdbcType="INTEGER" />
+    <result column="araccount" property="araccount" jdbcType="VARCHAR" />
+    <result column="arphone" property="arphone" jdbcType="VARCHAR" />
+    <result column="araddress" property="araddress" jdbcType="VARCHAR" />
+    <result column="worktype" property="worktype" jdbcType="VARCHAR" />
+    <result column="keepclass" property="keepclass" jdbcType="VARCHAR" />
+    <result column="arapwd" property="arapwd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    armemberid, artisansid, starid, ararmemberno, armembername, ararmembersex, isar, 
+    araccount, arphone, araddress, worktype, keepclass, arapwd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from armember
+    where armemberid = #{armemberid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from armember
+    where armemberid = #{armemberid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Armember" >
+    insert into armember (armemberid, artisansid, starid, 
+      ararmemberno, armembername, ararmembersex, 
+      isar, araccount, arphone, 
+      araddress, worktype, keepclass, 
+      arapwd)
+    values (#{armemberid,jdbcType=INTEGER}, #{artisansid,jdbcType=INTEGER}, #{starid,jdbcType=INTEGER}, 
+      #{ararmemberno,jdbcType=VARCHAR}, #{armembername,jdbcType=VARCHAR}, #{ararmembersex,jdbcType=INTEGER}, 
+      #{isar,jdbcType=INTEGER}, #{araccount,jdbcType=VARCHAR}, #{arphone,jdbcType=VARCHAR}, 
+      #{araddress,jdbcType=VARCHAR}, #{worktype,jdbcType=VARCHAR}, #{keepclass,jdbcType=VARCHAR}, 
+      #{arapwd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Armember" >
+    insert into armember
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="armemberid != null" >
+        armemberid,
+      </if>
+      <if test="artisansid != null" >
+        artisansid,
+      </if>
+      <if test="starid != null" >
+        starid,
+      </if>
+      <if test="ararmemberno != null" >
+        ararmemberno,
+      </if>
+      <if test="armembername != null" >
+        armembername,
+      </if>
+      <if test="ararmembersex != null" >
+        ararmembersex,
+      </if>
+      <if test="isar != null" >
+        isar,
+      </if>
+      <if test="araccount != null" >
+        araccount,
+      </if>
+      <if test="arphone != null" >
+        arphone,
+      </if>
+      <if test="araddress != null" >
+        araddress,
+      </if>
+      <if test="worktype != null" >
+        worktype,
+      </if>
+      <if test="keepclass != null" >
+        keepclass,
+      </if>
+      <if test="arapwd != null" >
+        arapwd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="armemberid != null" >
+        #{armemberid,jdbcType=INTEGER},
+      </if>
+      <if test="artisansid != null" >
+        #{artisansid,jdbcType=INTEGER},
+      </if>
+      <if test="starid != null" >
+        #{starid,jdbcType=INTEGER},
+      </if>
+      <if test="ararmemberno != null" >
+        #{ararmemberno,jdbcType=VARCHAR},
+      </if>
+      <if test="armembername != null" >
+        #{armembername,jdbcType=VARCHAR},
+      </if>
+      <if test="ararmembersex != null" >
+        #{ararmembersex,jdbcType=INTEGER},
+      </if>
+      <if test="isar != null" >
+        #{isar,jdbcType=INTEGER},
+      </if>
+      <if test="araccount != null" >
+        #{araccount,jdbcType=VARCHAR},
+      </if>
+      <if test="arphone != null" >
+        #{arphone,jdbcType=VARCHAR},
+      </if>
+      <if test="araddress != null" >
+        #{araddress,jdbcType=VARCHAR},
+      </if>
+      <if test="worktype != null" >
+        #{worktype,jdbcType=VARCHAR},
+      </if>
+      <if test="keepclass != null" >
+        #{keepclass,jdbcType=VARCHAR},
+      </if>
+      <if test="arapwd != null" >
+        #{arapwd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Armember" >
+    update armember
+    <set >
+      <if test="artisansid != null" >
+        artisansid = #{artisansid,jdbcType=INTEGER},
+      </if>
+      <if test="starid != null" >
+        starid = #{starid,jdbcType=INTEGER},
+      </if>
+      <if test="ararmemberno != null" >
+        ararmemberno = #{ararmemberno,jdbcType=VARCHAR},
+      </if>
+      <if test="armembername != null" >
+        armembername = #{armembername,jdbcType=VARCHAR},
+      </if>
+      <if test="ararmembersex != null" >
+        ararmembersex = #{ararmembersex,jdbcType=INTEGER},
+      </if>
+      <if test="isar != null" >
+        isar = #{isar,jdbcType=INTEGER},
+      </if>
+      <if test="araccount != null" >
+        araccount = #{araccount,jdbcType=VARCHAR},
+      </if>
+      <if test="arphone != null" >
+        arphone = #{arphone,jdbcType=VARCHAR},
+      </if>
+      <if test="araddress != null" >
+        araddress = #{araddress,jdbcType=VARCHAR},
+      </if>
+      <if test="worktype != null" >
+        worktype = #{worktype,jdbcType=VARCHAR},
+      </if>
+      <if test="keepclass != null" >
+        keepclass = #{keepclass,jdbcType=VARCHAR},
+      </if>
+      <if test="arapwd != null" >
+        arapwd = #{arapwd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where armemberid = #{armemberid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Armember" >
+    update armember
+    set artisansid = #{artisansid,jdbcType=INTEGER},
+      starid = #{starid,jdbcType=INTEGER},
+      ararmemberno = #{ararmemberno,jdbcType=VARCHAR},
+      armembername = #{armembername,jdbcType=VARCHAR},
+      ararmembersex = #{ararmembersex,jdbcType=INTEGER},
+      isar = #{isar,jdbcType=INTEGER},
+      araccount = #{araccount,jdbcType=VARCHAR},
+      arphone = #{arphone,jdbcType=VARCHAR},
+      araddress = #{araddress,jdbcType=VARCHAR},
+      worktype = #{worktype,jdbcType=VARCHAR},
+      keepclass = #{keepclass,jdbcType=VARCHAR},
+      arapwd = #{arapwd,jdbcType=VARCHAR}
+    where armemberid = #{armemberid,jdbcType=INTEGER}
+  </update>
+</mapper>

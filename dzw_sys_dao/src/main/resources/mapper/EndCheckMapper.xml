@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.EndCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.EndCheck" >
+    <id column="endcheckid" property="endcheckid" jdbcType="INTEGER" />
+    <result column="repairbillsno" property="repairbillsno" jdbcType="VARCHAR" />
+    <result column="checktype" property="checktype" jdbcType="INTEGER" />
+    <result column="estimatetime" property="estimatetime" jdbcType="TIMESTAMP" />
+    <result column="realitytime" property="realitytime" jdbcType="TIMESTAMP" />
+    <result column="delaycause" property="delaycause" jdbcType="VARCHAR" />
+    <result column="returnworkcause" property="returnworkcause" jdbcType="VARCHAR" />
+    <result column="qualityinspector" property="qualityinspector" jdbcType="VARCHAR" />
+    <result column="responsibleperson" property="responsibleperson" jdbcType="VARCHAR" />
+    <result column="punishprice" property="punishprice" jdbcType="DOUBLE" />
+    <result column="generateddate" property="generateddate" jdbcType="TIMESTAMP" />
+    <result column="zherentype" property="zherentype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    endcheckid, repairbillsno, checktype, estimatetime, realitytime, delaycause, returnworkcause, 
+    qualityinspector, responsibleperson, punishprice, generateddate, zherentype
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from endcheck
+    where endcheckid = #{endcheckid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from endcheck
+    where endcheckid = #{endcheckid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.EndCheck" >
+    insert into endcheck (endcheckid, repairbillsno, checktype, 
+      estimatetime, realitytime, delaycause, 
+      returnworkcause, qualityinspector, responsibleperson, 
+      punishprice, generateddate, zherentype
+      )
+    values (#{endcheckid,jdbcType=INTEGER}, #{repairbillsno,jdbcType=VARCHAR}, #{checktype,jdbcType=INTEGER}, 
+      #{estimatetime,jdbcType=TIMESTAMP}, #{realitytime,jdbcType=TIMESTAMP}, #{delaycause,jdbcType=VARCHAR}, 
+      #{returnworkcause,jdbcType=VARCHAR}, #{qualityinspector,jdbcType=VARCHAR}, #{responsibleperson,jdbcType=VARCHAR}, 
+      #{punishprice,jdbcType=DOUBLE}, #{generateddate,jdbcType=TIMESTAMP}, #{zherentype,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.EndCheck" >
+    insert into endcheck
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="endcheckid != null" >
+        endcheckid,
+      </if>
+      <if test="repairbillsno != null" >
+        repairbillsno,
+      </if>
+      <if test="checktype != null" >
+        checktype,
+      </if>
+      <if test="estimatetime != null" >
+        estimatetime,
+      </if>
+      <if test="realitytime != null" >
+        realitytime,
+      </if>
+      <if test="delaycause != null" >
+        delaycause,
+      </if>
+      <if test="returnworkcause != null" >
+        returnworkcause,
+      </if>
+      <if test="qualityinspector != null" >
+        qualityinspector,
+      </if>
+      <if test="responsibleperson != null" >
+        responsibleperson,
+      </if>
+      <if test="punishprice != null" >
+        punishprice,
+      </if>
+      <if test="generateddate != null" >
+        generateddate,
+      </if>
+      <if test="zherentype != null" >
+        zherentype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="endcheckid != null" >
+        #{endcheckid,jdbcType=INTEGER},
+      </if>
+      <if test="repairbillsno != null" >
+        #{repairbillsno,jdbcType=VARCHAR},
+      </if>
+      <if test="checktype != null" >
+        #{checktype,jdbcType=INTEGER},
+      </if>
+      <if test="estimatetime != null" >
+        #{estimatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realitytime != null" >
+        #{realitytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delaycause != null" >
+        #{delaycause,jdbcType=VARCHAR},
+      </if>
+      <if test="returnworkcause != null" >
+        #{returnworkcause,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityinspector != null" >
+        #{qualityinspector,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibleperson != null" >
+        #{responsibleperson,jdbcType=VARCHAR},
+      </if>
+      <if test="punishprice != null" >
+        #{punishprice,jdbcType=DOUBLE},
+      </if>
+      <if test="generateddate != null" >
+        #{generateddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zherentype != null" >
+        #{zherentype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.EndCheck" >
+    update endcheck
+    <set >
+      <if test="repairbillsno != null" >
+        repairbillsno = #{repairbillsno,jdbcType=VARCHAR},
+      </if>
+      <if test="checktype != null" >
+        checktype = #{checktype,jdbcType=INTEGER},
+      </if>
+      <if test="estimatetime != null" >
+        estimatetime = #{estimatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="realitytime != null" >
+        realitytime = #{realitytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delaycause != null" >
+        delaycause = #{delaycause,jdbcType=VARCHAR},
+      </if>
+      <if test="returnworkcause != null" >
+        returnworkcause = #{returnworkcause,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityinspector != null" >
+        qualityinspector = #{qualityinspector,jdbcType=VARCHAR},
+      </if>
+      <if test="responsibleperson != null" >
+        responsibleperson = #{responsibleperson,jdbcType=VARCHAR},
+      </if>
+      <if test="punishprice != null" >
+        punishprice = #{punishprice,jdbcType=DOUBLE},
+      </if>
+      <if test="generateddate != null" >
+        generateddate = #{generateddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zherentype != null" >
+        zherentype = #{zherentype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where endcheckid = #{endcheckid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.EndCheck" >
+    update endcheck
+    set repairbillsno = #{repairbillsno,jdbcType=VARCHAR},
+      checktype = #{checktype,jdbcType=INTEGER},
+      estimatetime = #{estimatetime,jdbcType=TIMESTAMP},
+      realitytime = #{realitytime,jdbcType=TIMESTAMP},
+      delaycause = #{delaycause,jdbcType=VARCHAR},
+      returnworkcause = #{returnworkcause,jdbcType=VARCHAR},
+      qualityinspector = #{qualityinspector,jdbcType=VARCHAR},
+      responsibleperson = #{responsibleperson,jdbcType=VARCHAR},
+      punishprice = #{punishprice,jdbcType=DOUBLE},
+      generateddate = #{generateddate,jdbcType=TIMESTAMP},
+      zherentype = #{zherentype,jdbcType=VARCHAR}
+    where endcheckid = #{endcheckid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.AffiliationMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Affiliation" >
+    <id column="affiliationid" property="affiliationid" jdbcType="INTEGER" />
+    <result column="affiliationname" property="affiliationname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    affiliationid, affiliationname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from affiliation
+    where affiliationid = #{affiliationid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from affiliation
+    where affiliationid = #{affiliationid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Affiliation" >
+    insert into affiliation (affiliationid, affiliationname)
+    values (#{affiliationid,jdbcType=INTEGER}, #{affiliationname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Affiliation" >
+    insert into affiliation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="affiliationid != null" >
+        affiliationid,
+      </if>
+      <if test="affiliationname != null" >
+        affiliationname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="affiliationid != null" >
+        #{affiliationid,jdbcType=INTEGER},
+      </if>
+      <if test="affiliationname != null" >
+        #{affiliationname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Affiliation" >
+    update affiliation
+    <set >
+      <if test="affiliationname != null" >
+        affiliationname = #{affiliationname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where affiliationid = #{affiliationid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Affiliation" >
+    update affiliation
+    set affiliationname = #{affiliationname,jdbcType=VARCHAR}
+    where affiliationid = #{affiliationid,jdbcType=INTEGER}
+  </update>
+</mapper>

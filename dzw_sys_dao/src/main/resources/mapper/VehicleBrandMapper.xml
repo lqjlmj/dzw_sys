@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.VehicleBrandMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.VehicleBrand" >
+    <id column="vbrandid" property="vbrandid" jdbcType="INTEGER" />
+    <result column="vbrandno" property="vbrandno" jdbcType="VARCHAR" />
+    <result column="vbrandname" property="vbrandname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    vbrandid, vbrandno, vbrandname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vehiclebrand
+    where vbrandid = #{vbrandid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vehiclebrand
+    where vbrandid = #{vbrandid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.VehicleBrand" >
+    insert into vehiclebrand (vbrandid, vbrandno, vbrandname
+      )
+    values (#{vbrandid,jdbcType=INTEGER}, #{vbrandno,jdbcType=VARCHAR}, #{vbrandname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.VehicleBrand" >
+    insert into vehiclebrand
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="vbrandid != null" >
+        vbrandid,
+      </if>
+      <if test="vbrandno != null" >
+        vbrandno,
+      </if>
+      <if test="vbrandname != null" >
+        vbrandname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="vbrandid != null" >
+        #{vbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="vbrandno != null" >
+        #{vbrandno,jdbcType=VARCHAR},
+      </if>
+      <if test="vbrandname != null" >
+        #{vbrandname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.VehicleBrand" >
+    update vehiclebrand
+    <set >
+      <if test="vbrandno != null" >
+        vbrandno = #{vbrandno,jdbcType=VARCHAR},
+      </if>
+      <if test="vbrandname != null" >
+        vbrandname = #{vbrandname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vbrandid = #{vbrandid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.VehicleBrand" >
+    update vehiclebrand
+    set vbrandno = #{vbrandno,jdbcType=VARCHAR},
+      vbrandname = #{vbrandname,jdbcType=VARCHAR}
+    where vbrandid = #{vbrandid,jdbcType=INTEGER}
+  </update>
+</mapper>

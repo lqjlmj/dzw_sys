@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.UserVehicleMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.UserVehicle" >
+    <id column="uvehicleid" property="uvehicleid" jdbcType="INTEGER" />
+    <result column="vtypeid" property="vtypeid" jdbcType="INTEGER" />
+    <result column="vbrandid" property="vbrandid" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="affiliationid" property="affiliationid" jdbcType="INTEGER" />
+    <result column="ulicense" property="ulicense" jdbcType="VARCHAR" />
+    <result column="resdriver" property="resdriver" jdbcType="VARCHAR" />
+    <result column="driverphone" property="driverphone" jdbcType="VARCHAR" />
+    <result column="umileage" property="umileage" jdbcType="INTEGER" />
+    <result column="registereddate" property="registereddate" jdbcType="DATE" />
+    <result column="buydate" property="buydate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    uvehicleid, vtypeid, vbrandid, userid, affiliationid, ulicense, resdriver, driverphone, 
+    umileage, registereddate, buydate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from uservehicle
+    where uvehicleid = #{uvehicleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from uservehicle
+    where uvehicleid = #{uvehicleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.UserVehicle" >
+    insert into uservehicle (uvehicleid, vtypeid, vbrandid, 
+      userid, affiliationid, ulicense, 
+      resdriver, driverphone, umileage, 
+      registereddate, buydate)
+    values (#{uvehicleid,jdbcType=INTEGER}, #{vtypeid,jdbcType=INTEGER}, #{vbrandid,jdbcType=INTEGER}, 
+      #{userid,jdbcType=INTEGER}, #{affiliationid,jdbcType=INTEGER}, #{ulicense,jdbcType=VARCHAR}, 
+      #{resdriver,jdbcType=VARCHAR}, #{driverphone,jdbcType=VARCHAR}, #{umileage,jdbcType=INTEGER}, 
+      #{registereddate,jdbcType=DATE}, #{buydate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.UserVehicle" >
+    insert into uservehicle
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uvehicleid != null" >
+        uvehicleid,
+      </if>
+      <if test="vtypeid != null" >
+        vtypeid,
+      </if>
+      <if test="vbrandid != null" >
+        vbrandid,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="affiliationid != null" >
+        affiliationid,
+      </if>
+      <if test="ulicense != null" >
+        ulicense,
+      </if>
+      <if test="resdriver != null" >
+        resdriver,
+      </if>
+      <if test="driverphone != null" >
+        driverphone,
+      </if>
+      <if test="umileage != null" >
+        umileage,
+      </if>
+      <if test="registereddate != null" >
+        registereddate,
+      </if>
+      <if test="buydate != null" >
+        buydate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uvehicleid != null" >
+        #{uvehicleid,jdbcType=INTEGER},
+      </if>
+      <if test="vtypeid != null" >
+        #{vtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="vbrandid != null" >
+        #{vbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="affiliationid != null" >
+        #{affiliationid,jdbcType=INTEGER},
+      </if>
+      <if test="ulicense != null" >
+        #{ulicense,jdbcType=VARCHAR},
+      </if>
+      <if test="resdriver != null" >
+        #{resdriver,jdbcType=VARCHAR},
+      </if>
+      <if test="driverphone != null" >
+        #{driverphone,jdbcType=VARCHAR},
+      </if>
+      <if test="umileage != null" >
+        #{umileage,jdbcType=INTEGER},
+      </if>
+      <if test="registereddate != null" >
+        #{registereddate,jdbcType=DATE},
+      </if>
+      <if test="buydate != null" >
+        #{buydate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.UserVehicle" >
+    update uservehicle
+    <set >
+      <if test="vtypeid != null" >
+        vtypeid = #{vtypeid,jdbcType=INTEGER},
+      </if>
+      <if test="vbrandid != null" >
+        vbrandid = #{vbrandid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="affiliationid != null" >
+        affiliationid = #{affiliationid,jdbcType=INTEGER},
+      </if>
+      <if test="ulicense != null" >
+        ulicense = #{ulicense,jdbcType=VARCHAR},
+      </if>
+      <if test="resdriver != null" >
+        resdriver = #{resdriver,jdbcType=VARCHAR},
+      </if>
+      <if test="driverphone != null" >
+        driverphone = #{driverphone,jdbcType=VARCHAR},
+      </if>
+      <if test="umileage != null" >
+        umileage = #{umileage,jdbcType=INTEGER},
+      </if>
+      <if test="registereddate != null" >
+        registereddate = #{registereddate,jdbcType=DATE},
+      </if>
+      <if test="buydate != null" >
+        buydate = #{buydate,jdbcType=DATE},
+      </if>
+    </set>
+    where uvehicleid = #{uvehicleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.UserVehicle" >
+    update uservehicle
+    set vtypeid = #{vtypeid,jdbcType=INTEGER},
+      vbrandid = #{vbrandid,jdbcType=INTEGER},
+      userid = #{userid,jdbcType=INTEGER},
+      affiliationid = #{affiliationid,jdbcType=INTEGER},
+      ulicense = #{ulicense,jdbcType=VARCHAR},
+      resdriver = #{resdriver,jdbcType=VARCHAR},
+      driverphone = #{driverphone,jdbcType=VARCHAR},
+      umileage = #{umileage,jdbcType=INTEGER},
+      registereddate = #{registereddate,jdbcType=DATE},
+      buydate = #{buydate,jdbcType=DATE}
+    where uvehicleid = #{uvehicleid,jdbcType=INTEGER}
+  </update>
+</mapper>
