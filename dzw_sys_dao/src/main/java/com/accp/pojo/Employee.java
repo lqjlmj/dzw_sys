@@ -2,6 +2,8 @@ package com.accp.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Employee {
     private Integer eid;
 
@@ -34,7 +36,7 @@ public class Employee {
     private String eemail;
 
     private String eaddress;
-
+    @JSONField(format = "yyyy-MM-dd")
     private Date einputdate;
 
     private String ecurriculumvitae;

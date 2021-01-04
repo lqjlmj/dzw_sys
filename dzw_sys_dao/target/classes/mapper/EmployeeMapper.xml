@@ -280,4 +280,13 @@
       deid = #{deid,jdbcType=INTEGER}
     where eid = #{eid,jdbcType=INTEGER}
   </update>
+  
+  <select id="login" resultType="com.accp.pojo.Employee">
+  		SELECT * FROM employee WHERE eaccount=#{eaccount} AND epwd=#{epwd}
+  </select>
+  
+  
+  
+  
+  
 </mapper>
