@@ -29,18 +29,18 @@ public class EmployeeAction {
 	 * @return
 	 */
 	@GetMapping("{eaccount}/{epwd}")
-	public Employee login(HttpSession session,@PathVariable String eaccount,@PathVariable String epwd){
+	public Map<String, String> login(HttpSession session,@PathVariable String eaccount,@PathVariable String epwd){
 		Employee u= biz.login(eaccount,epwd);
 		Map<String, String> message = new HashMap<String, String>();
 		if(u!=null){
-			session.setAttribute("u",u);
+			session.setAttribute("us",u);
 			message.put("code", "200");
 			message.put("msg", "ok");
 		}else {
 			message.put("code", "300");
 			message.put("msg", "error");
 		}
-		return u;
+		return message;
 	}
 	
 	@GetMapping
