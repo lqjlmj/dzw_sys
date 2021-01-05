@@ -1,6 +1,7 @@
 package com.accp.action.lqj;
 
-import java.util.List;
+import java.util.Hashtable;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.biz.lqj.JurisdictionBiz;
-import com.accp.pojo.Jurisdiction;
 
 @RestController
 @RequestMapping("/api/Jurisdictions")
@@ -23,8 +23,13 @@ public class JurisdictionAction {
 	 * @return
 	 */
 	@RequestMapping
-	public List<Jurisdiction> queryAllJurisdiction(){
-		return biz.queryAllJurisdiction();
+	public Map<String, Object> queryAllJurisdiction(){
+		Map<String, Object> maps = new Hashtable<>();
+		maps.put("code",0);
+		maps.put("msg","");
+		maps.put("count",4);
+		maps.put("data",biz.queryAllJurisdiction());
+		return maps;
 	}
 	
 	/**
@@ -34,7 +39,7 @@ public class JurisdictionAction {
 	 */
 	@RequestMapping("{jurisdictioncode}")
 	public int deleteById(@PathVariable String jurisdictioncode){
-		return biz.deleteById(jurisdictioncode);
+		return biz.removeById(jurisdictioncode);
 	}
 	
 }

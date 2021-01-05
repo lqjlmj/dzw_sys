@@ -26,7 +26,7 @@ public class JurisdictionBiz {
 	 * @param jurisdictionid
 	 * @return
 	 */
-	public int deleteById(String jurisdictioncode){
+	public int removeById(String jurisdictioncode){
 		return dao.deleteByPrimaryKey(jurisdictioncode);
 	}
 	
