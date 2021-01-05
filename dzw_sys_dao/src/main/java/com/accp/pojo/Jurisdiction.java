@@ -2,6 +2,8 @@ package com.accp.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Jurisdiction {
     private Integer jurisdictionid;
 
@@ -10,7 +12,8 @@ public class Jurisdiction {
     private String jurisdictioncode;
 
     private Integer jurstatus;
-
+    
+    @JSONField(format = "yyyy-MM-dd")
     private Date createdate;
 
     private String createby;

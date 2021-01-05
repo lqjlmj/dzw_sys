@@ -36,6 +36,7 @@ public class Employee {
     private String eemail;
 
     private String eaddress;
+    
     @JSONField(format = "yyyy-MM-dd")
     private Date einputdate;
 

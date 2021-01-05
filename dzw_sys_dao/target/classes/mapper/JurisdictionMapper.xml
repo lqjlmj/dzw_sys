@@ -18,9 +18,9 @@
     from jurisdiction
     where jurisdictionid = #{jurisdictionid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey">
     delete from jurisdiction
-    where jurisdictionid = #{jurisdictionid,jdbcType=INTEGER}
+    where jurisdictioncode = #{jurisdictioncode}
   </delete>
   <insert id="insert" parameterType="com.accp.pojo.Jurisdiction" >
     insert into jurisdiction (jurisdictionid, jurisdictionname, 
@@ -103,4 +103,11 @@
       createby = #{createby,jdbcType=VARCHAR}
     where jurisdictionid = #{jurisdictionid,jdbcType=INTEGER}
   </update>
+  <select id="queryAllJurisdiction" resultType="com.accp.pojo.Jurisdiction">
+  		SELECT * FROM jurisdiction
+  </select>
+  
+  
+  
+  
 </mapper>
