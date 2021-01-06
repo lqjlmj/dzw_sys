@@ -30,5 +30,13 @@ public class JurisdictionBiz {
 		return dao.deleteByPrimaryKey(jurisdictioncode);
 	}
 	
+	/**
+	 * 根据编码修改员工角色
+	 */
+	public int modifyByCode(String jurisdictionname,String jurisdictioncode){
+		return dao.updateByPrimaryKeySelective(jurisdictionname, jurisdictioncode);
+	}
+	
+	
 	
 }

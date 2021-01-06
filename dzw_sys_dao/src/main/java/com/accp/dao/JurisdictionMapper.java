@@ -26,8 +26,13 @@ public interface JurisdictionMapper {
     int insertSelective(Jurisdiction record);
 
     Jurisdiction selectByPrimaryKey(Integer jurisdictionid);
-
-    int updateByPrimaryKeySelective(Jurisdiction record);
+    
+    /**
+     * 根据编码修改员工角色
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKeySelective(@Param("jurisdictionname") String jurisdictionname,@Param("jurisdictioncode") String jurisdictioncode);
 
     int updateByPrimaryKey(Jurisdiction record);
 }

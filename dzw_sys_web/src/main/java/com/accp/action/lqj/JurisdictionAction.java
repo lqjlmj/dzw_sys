@@ -42,4 +42,15 @@ public class JurisdictionAction {
 		return biz.removeById(jurisdictioncode);
 	}
 	
+	/**
+	 * 根据编码修改员工角色
+	 * @param jurisdictionname
+	 * @param jurisdictioncode
+	 * @return
+	 */
+	@RequestMapping("{jurisdictionname}/{jurisdictioncode}")
+	public int modifyByCode(@PathVariable String jurisdictionname,@PathVariable String jurisdictioncode){
+		return biz.modifyByCode(jurisdictionname, jurisdictioncode);
+	}
+	
 }

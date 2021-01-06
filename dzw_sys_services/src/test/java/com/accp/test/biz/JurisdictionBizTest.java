@@ -14,10 +14,20 @@ public class JurisdictionBizTest {
 	@Autowired
 	private JurisdictionBiz biz;
 	
+	/**
+	 * 测试查询所有角色
+	 */
 	@Test
 	public void queryAllJueSe(){
 		biz.queryAllJurisdiction();
 	}
 	
+	/**
+	 * 测试修改员工角色
+	 */
+	@Test
+	public void updateByCode(){
+		biz.modifyByCode("111", "SHY001");
+	}
 	
 }

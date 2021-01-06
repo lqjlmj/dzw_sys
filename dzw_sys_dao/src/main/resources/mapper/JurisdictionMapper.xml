@@ -73,26 +73,14 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Jurisdiction" >
+  <update id="updateByPrimaryKeySelective">
     update jurisdiction
     <set >
       <if test="jurisdictionname != null" >
         jurisdictionname = #{jurisdictionname,jdbcType=VARCHAR},
       </if>
-      <if test="jurisdictioncode != null" >
-        jurisdictioncode = #{jurisdictioncode,jdbcType=VARCHAR},
-      </if>
-      <if test="jurstatus != null" >
-        jurstatus = #{jurstatus,jdbcType=INTEGER},
-      </if>
-      <if test="createdate != null" >
-        createdate = #{createdate,jdbcType=DATE},
-      </if>
-      <if test="createby != null" >
-        createby = #{createby,jdbcType=VARCHAR},
-      </if>
     </set>
-    where jurisdictionid = #{jurisdictionid,jdbcType=INTEGER}
+    where jurisdictioncode = #{jurisdictioncode,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Jurisdiction" >
     update jurisdiction
