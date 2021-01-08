@@ -36,6 +36,11 @@ public class JurisdictionAction {
 		return maps;
 	}
 	
+	/**
+	 * 根据角色编码查询角色对象
+	 * @param jurisdictioncode
+	 * @return
+	 */
 	@RequestMapping("/Jurisdiction/{jurisdictioncode}")
 	public Jurisdiction queryJurisdictionByCode(@PathVariable String jurisdictioncode){
 		return biz.queryJurisdiction(jurisdictioncode);
