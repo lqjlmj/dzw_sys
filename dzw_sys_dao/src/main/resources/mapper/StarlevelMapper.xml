@@ -6,66 +6,27 @@
     <result column="starname" property="starname" jdbcType="VARCHAR" />
     <result column="multiple" property="multiple" jdbcType="REAL" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    starid, starname, multiple
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from starlevel
-    where starid = #{starid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from starlevel
-    where starid = #{starid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.accp.pojo.Starlevel" >
-    insert into starlevel (starid, starname, multiple
-      )
-    values (#{starid,jdbcType=INTEGER}, #{starname,jdbcType=VARCHAR}, #{multiple,jdbcType=REAL}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.accp.pojo.Starlevel" >
-    insert into starlevel
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="starid != null" >
-        starid,
-      </if>
-      <if test="starname != null" >
-        starname,
-      </if>
-      <if test="multiple != null" >
-        multiple,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="starid != null" >
-        #{starid,jdbcType=INTEGER},
-      </if>
-      <if test="starname != null" >
-        #{starname,jdbcType=VARCHAR},
-      </if>
-      <if test="multiple != null" >
-        #{multiple,jdbcType=REAL},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Starlevel" >
-    update starlevel
-    <set >
-      <if test="starname != null" >
-        starname = #{starname,jdbcType=VARCHAR},
-      </if>
-      <if test="multiple != null" >
-        multiple = #{multiple,jdbcType=REAL},
-      </if>
-    </set>
-    where starid = #{starid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Starlevel" >
-    update starlevel
-    set starname = #{starname,jdbcType=VARCHAR},
-      multiple = #{multiple,jdbcType=REAL}
-    where starid = #{starid,jdbcType=INTEGER}
-  </update>
+ <select id="selectStar" resultType="com.accp.pojo.Starlevel">
+ 	SELECT * FROM starlevel
+ </select>
+ 
+ <select id="selectStarById" resultType="com.accp.pojo.Starlevel">
+ 	SELECT * FROM starlevel where starid=#{starid}
+ </select>
+ 
+ <insert id="addStar">
+ 	INSERT INTO starlevel VALUE(0,#{starname},#{multiple});
+ </insert>
+ 
+ <update id="updateStar">
+ 	UPDATE starlevel SET starname=#{star.starname},multiple=#{star.multiple} WHERE starid=#{star.starid} 
+ </update>
+ 
+ <delete id="delStar">
+ 	DELETE FROM starlevel  WHERE starid=#{starid}
+ </delete>
+ 
+ <delete id="delStar1">
+ 	DELETE FROM starlevel  WHERE starid=3
+ </delete>
 </mapper>
