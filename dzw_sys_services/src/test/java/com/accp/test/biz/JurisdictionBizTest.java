@@ -24,6 +24,14 @@ public class JurisdictionBizTest {
 	}
 	
 	/**
+	 * 测试角色对象
+	 */
+	@Test
+	public void queryJueSeByCode(){
+		biz.queryJurisdiction("SHY001");
+	}
+	
+	/**
 	 * 测试修改员工角色
 	 */
 	@Test

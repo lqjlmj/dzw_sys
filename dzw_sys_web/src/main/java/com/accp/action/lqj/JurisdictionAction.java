@@ -36,6 +36,11 @@ public class JurisdictionAction {
 		return maps;
 	}
 	
+	@RequestMapping("/Jurisdiction/{jurisdictioncode}")
+	public Jurisdiction queryJurisdictionByCode(@PathVariable String jurisdictioncode){
+		return biz.queryJurisdiction(jurisdictioncode);
+	}
+	
 	/**
 	 * 根据角色编码删除对象
 	 * @param jurisdictionid
@@ -53,10 +58,19 @@ public class JurisdictionAction {
 	 * @return
 	 */
 	@RequestMapping("{jurisdictionname}/{jurisdictioncode}")
-	public int modifyByCode(@PathVariable String jurisdictionname,@PathVariable String jurisdictioncode){
-		return biz.modifyByCode(jurisdictionname, jurisdictioncode);
+	public Map<String, String> modifyByCode(@PathVariable String jurisdictionname,@PathVariable String jurisdictioncode){
+		Map<String, String> message = new HashMap<String, String>();
+		biz.modifyByCode(jurisdictionname, jurisdictioncode);
+		message.put("code", "200");
+		message.put("msg", "ok");
+		return message;
 	}
 	
+	/**
+	 * 新增角色信息
+	 * @param juese
+	 * @return
+	 */
 	@PostMapping("juese")
 	public Map<String, String> addJueSe(@RequestBody Jurisdiction juese){
 		Map<String, String> message = new HashMap<String, String>();

@@ -22,6 +22,15 @@ public class JurisdictionBiz {
 	}
 	
 	/**
+	 * 根据编码查询角色对象
+	 * @param jurisdictioncode
+	 * @return
+	 */
+	public Jurisdiction queryJurisdiction(String jurisdictioncode){
+		return dao.queryJurisdictionByCode(jurisdictioncode);
+	}
+	
+	/**
 	 * 根据角色编码删除对象
 	 * @param jurisdictionid
 	 * @return

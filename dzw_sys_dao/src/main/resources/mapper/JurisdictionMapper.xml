@@ -95,7 +95,9 @@
   		SELECT * FROM jurisdiction
   </select>
   
-  
+  <select id="queryJurisdictionByCode" resultType="com.accp.pojo.Jurisdiction">
+  		SELECT * FROM jurisdiction WHERE jurisdictioncode=#{jurisdictioncode}
+  </select>
   
   
 </mapper>

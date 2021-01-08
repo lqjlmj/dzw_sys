@@ -15,6 +15,13 @@ public interface JurisdictionMapper {
 	List<Jurisdiction> queryAllJurisdiction();
 	
 	/**
+	 * 根据编码查询角色对象
+	 * @param jurisdictioncode
+	 * @return
+	 */
+	Jurisdiction queryJurisdictionByCode(@Param("jurisdictioncode")String jurisdictioncode);
+	
+	/**
 	 * 根据角色id删除对象
 	 * @param jurisdictionid
 	 * @return
