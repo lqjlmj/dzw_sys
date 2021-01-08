@@ -27,6 +27,17 @@ public class Jurisdiction {
 		this.jurisdictionname = jurisdictionname;
 		this.jurisdictioncode = jurisdictioncode;
 	}
+    
+
+	public Jurisdiction(String jurisdictionname, String jurisdictioncode, Integer jurstatus, Date createdate,
+			String createby) {
+		super();
+		this.jurisdictionname = jurisdictionname;
+		this.jurisdictioncode = jurisdictioncode;
+		this.jurstatus = jurstatus;
+		this.createdate = createdate;
+		this.createby = createby;
+	}
 
 	public Jurisdiction(Integer jurisdictionid, String jurisdictionname, String jurisdictioncode, Integer jurstatus,
 			Date createdate, String createby) {

@@ -37,6 +37,14 @@ public class JurisdictionBiz {
 		return dao.updateByPrimaryKeySelective(jurisdictionname, jurisdictioncode);
 	}
 	
+	/**
+	 * 新增角色信息
+	 * @param juese
+	 * @return
+	 */
+	public int addJueSe(Jurisdiction juese){
+		return dao.insert(juese);
+	}
 	
 	
 }

@@ -20,8 +20,13 @@ public interface JurisdictionMapper {
 	 * @return
 	 */
     int deleteByPrimaryKey(@Param("jurisdictioncode")String jurisdictioncode);
-
-    int insert(Jurisdiction record);
+    
+    /**
+     * 新增角色信息
+     * @param record
+     * @return
+     */
+    int insert(@Param("juese")Jurisdiction juese);
 
     int insertSelective(Jurisdiction record);
 

@@ -1,15 +1,19 @@
 package com.accp.action.lqj;
 
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.biz.lqj.JurisdictionBiz;
+import com.accp.pojo.Jurisdiction;
 
 @RestController
 @RequestMapping("/api/Jurisdictions")
@@ -51,6 +55,15 @@ public class JurisdictionAction {
 	@RequestMapping("{jurisdictionname}/{jurisdictioncode}")
 	public int modifyByCode(@PathVariable String jurisdictionname,@PathVariable String jurisdictioncode){
 		return biz.modifyByCode(jurisdictionname, jurisdictioncode);
+	}
+	
+	@PostMapping("juese")
+	public Map<String, String> addJueSe(@RequestBody Jurisdiction juese){
+		Map<String, String> message = new HashMap<String, String>();
+		biz.addJueSe(juese);
+		message.put("code", "200");
+		message.put("msg", "ok");
+		return message;
 	}
 	
 }

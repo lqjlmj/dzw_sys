@@ -22,13 +22,13 @@
     delete from jurisdiction
     where jurisdictioncode = #{jurisdictioncode}
   </delete>
-  <insert id="insert" parameterType="com.accp.pojo.Jurisdiction" >
-    insert into jurisdiction (jurisdictionid, jurisdictionname, 
+  <insert id="insert">
+    insert into jurisdiction (jurisdictionname, 
       jurisdictioncode, jurstatus, createdate, 
       createby)
-    values (#{jurisdictionid,jdbcType=INTEGER}, #{jurisdictionname,jdbcType=VARCHAR}, 
-      #{jurisdictioncode,jdbcType=VARCHAR}, #{jurstatus,jdbcType=INTEGER}, #{createdate,jdbcType=DATE}, 
-      #{createby,jdbcType=VARCHAR})
+    values (#{juese.jurisdictionname,jdbcType=VARCHAR}, 
+      #{juese.jurisdictioncode,jdbcType=VARCHAR}, #{juese.jurstatus,jdbcType=INTEGER}, #{juese.createdate,jdbcType=DATE}, 
+      #{juese.createby,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.accp.pojo.Jurisdiction" >
     insert into jurisdiction
