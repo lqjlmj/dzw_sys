@@ -1,17 +1,12 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Employee;
+import com.accp.pojo.Group;
 
-public interface EmployeeMapper {
-    int deleteByPrimaryKey(Integer eid);
-
-    int insert(Employee record);
-
-    int insertSelective(Employee record);
-
-    Employee selectByPrimaryKey(Integer eid);
-
-    int updateByPrimaryKeySelective(Employee record);
-
-    int updateByPrimaryKey(Employee record);
+public interface EmployeeMapper {	
+    
+    List<Employee> selectAll();
+    
 }

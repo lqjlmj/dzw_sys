@@ -1,17 +1,41 @@
 package com.accp.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.accp.pojo.Starlevel;
 
 public interface StarlevelMapper {
-    int deleteByPrimaryKey(Integer starid);
-
-    int insert(Starlevel record);
-
-    int insertSelective(Starlevel record);
-
-    Starlevel selectByPrimaryKey(Integer starid);
-
-    int updateByPrimaryKeySelective(Starlevel record);
-
-    int updateByPrimaryKey(Starlevel record);
+    /**
+     * 查询技工星级
+     * @return
+     */
+	List<Starlevel> selectStar();
+	/**
+	 * 新增星级
+	 * @param star
+	 * @return
+	 */
+	int addStar(Starlevel star);
+	/**
+	 * 更加starid查询单个
+	 * @param starid
+	 * @return
+	 */
+	Starlevel selectStarById(Integer starid);
+	/**
+	 * 修改星级
+	 * @param starid
+	 * @return
+	 */
+	int updateStar(@Param("star") Starlevel star);
+	/**
+	 * 删除星级
+	 * @param starid
+	 * @return
+	 */
+	int delStar(Integer starid);
+	
+	
 }
