@@ -25,9 +25,9 @@
     from user
     where userid = #{userid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey">
     delete from user
-    where userid = #{userid,jdbcType=INTEGER}
+    where userno = #{userno}
   </delete>
   <insert id="insert" parameterType="com.accp.pojo.User" >
     insert into user (userid, armemberid, userno, 
@@ -174,4 +174,19 @@
       isvip = #{isvip,jdbcType=INTEGER}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
+  <select id="queryAllUser" resultType="com.accp.pojo.User">
+  		SELECT * FROM `user` LIMIT #{start},#{pageSize}
+  </select>
+  <select id="queryUserCount" resultType="int">
+  		SELECT COUNT(*) FROM `user`
+  </select>
+  <select id="queryUserByUserNo" resultType="com.accp.pojo.User">
+  		SELECT * FROM `user`
+  		<where>
+  			<if test="userno != null" >
+        		AND userno LIKE '%${userno}%'
+      		</if>
+  		</where>
+  </select>
+  
 </mapper>
