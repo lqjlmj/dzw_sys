@@ -29,16 +29,12 @@
     delete from user
     where userno = #{userno}
   </delete>
-  <insert id="insert" parameterType="com.accp.pojo.User" >
-    insert into user (userid, armemberid, userno, 
-      username, userphone, useraddress, 
-      usertime, usercomment, uamount, 
-      uintegral, signupaddress, isvip
-      )
-    values (#{userid,jdbcType=INTEGER}, #{armemberid,jdbcType=INTEGER}, #{userno,jdbcType=VARCHAR}, 
-      #{username,jdbcType=VARCHAR}, #{userphone,jdbcType=VARCHAR}, #{useraddress,jdbcType=VARCHAR}, 
-      #{usertime,jdbcType=DATE}, #{usercomment,jdbcType=VARCHAR}, #{uamount,jdbcType=REAL}, 
-      #{uintegral,jdbcType=INTEGER}, #{signupaddress,jdbcType=VARCHAR}, #{isvip,jdbcType=INTEGER}
+  <insert id="insert">
+    insert into user (userno, 
+      username, userphone, useraddress,usertime,usercomment)
+    values (#{user.userno,jdbcType=VARCHAR}, 
+      #{user.username,jdbcType=VARCHAR}, #{user.userphone,jdbcType=VARCHAR}, #{user.useraddress,jdbcType=VARCHAR}, 
+      #{user.usertime,jdbcType=DATE},#{user.usercomment,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.accp.pojo.User" >
@@ -159,20 +155,15 @@
     </set>
     where userid = #{userid,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.User" >
+  <update id="updateByPrimaryKey">
     update user
-    set armemberid = #{armemberid,jdbcType=INTEGER},
-      userno = #{userno,jdbcType=VARCHAR},
-      username = #{username,jdbcType=VARCHAR},
-      userphone = #{userphone,jdbcType=VARCHAR},
-      useraddress = #{useraddress,jdbcType=VARCHAR},
-      usertime = #{usertime,jdbcType=DATE},
-      usercomment = #{usercomment,jdbcType=VARCHAR},
-      uamount = #{uamount,jdbcType=REAL},
-      uintegral = #{uintegral,jdbcType=INTEGER},
-      signupaddress = #{signupaddress,jdbcType=VARCHAR},
-      isvip = #{isvip,jdbcType=INTEGER}
-    where userid = #{userid,jdbcType=INTEGER}
+    set armemberid = #{record.armemberid,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      userphone = #{record.userphone,jdbcType=VARCHAR},
+      useraddress = #{record.useraddress,jdbcType=VARCHAR},
+      usertime = #{record.usertime,jdbcType=DATE},
+      usercomment = #{record.usercomment,jdbcType=VARCHAR}
+    where userno = #{record.userno,jdbcType=VARCHAR}
   </update>
   <select id="queryAllUser" resultType="com.accp.pojo.User">
   		SELECT * FROM `user` LIMIT #{start},#{pageSize}
@@ -187,6 +178,9 @@
         		AND userno LIKE '%${userno}%'
       		</if>
   		</where>
+  </select>
+  <select id="queryUserByBianHao" resultType="com.accp.pojo.User">
+  		SELECT * FROM `user` WHERE userno=#{userno}
   </select>
   
 </mapper>

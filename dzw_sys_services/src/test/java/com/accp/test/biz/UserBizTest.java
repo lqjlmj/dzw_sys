@@ -31,11 +31,19 @@ public class UserBizTest {
 	}
 	
 	/**
-	 * 根据用户编码查询
+	 * 根据用户编码模糊查询
 	 */
 	@Test
 	public void queryUserByUserNo(){
 		biz.queryUserByUserNo("M");
+	}
+	
+	/**
+	 * 根据用户编码查询对象
+	 */
+	@Test
+	public void queryUserByBianHao(){
+		biz.queryUserByBianHao("M001");
 	}
 	
 	/**
@@ -45,5 +53,6 @@ public class UserBizTest {
 	public void removeUserByUserNo(){
 		biz.removeUserByUserNo("ww006");
 	}
+	
 	
 }

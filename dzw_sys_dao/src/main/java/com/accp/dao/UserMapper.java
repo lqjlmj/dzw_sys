@@ -14,11 +14,18 @@ public interface UserMapper {
 	List<User> queryAllUser(@Param("start")Integer start,@Param("pageSize")Integer pageSize);
 	
 	/**
-	 * 根据用户编号查询
+	 * 根据用户编号模糊查詢
 	 * @param userno
 	 * @return
 	 */
 	List<User> queryUserByUserNo(@Param("userno")String userno);
+	
+	/**
+	 * 根据用户编号查询对象
+	 * @param userno
+	 * @return
+	 */
+	User queryUserByBianHao(@Param("userno")String userno);
 	
 	int queryUserCount();
 	
@@ -28,14 +35,24 @@ public interface UserMapper {
 	 * @return
 	 */
     int deleteByPrimaryKey(@Param("userno")String userno);
-
-    int insert(User record);
+    
+    /**
+     * 新增用户信息
+     * @param record
+     * @return
+     */
+    int insert(@Param("user")User user);
 
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer userid);
 
     int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
+    
+    /**
+     * 修改用户信息
+     * @param record
+     * @return
+     */
+    int updateByPrimaryKey(@Param("record")User record);
 }

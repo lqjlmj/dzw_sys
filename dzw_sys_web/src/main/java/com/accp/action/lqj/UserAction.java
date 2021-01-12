@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.accp.biz.lqj.UserBiz;
+import com.accp.pojo.User;
 
 @RestController
 @RequestMapping("/api/users")
@@ -53,6 +56,16 @@ public class UserAction {
 	}
 	
 	/**
+	 * 根据用户编码查询对象
+	 * @param userno
+	 * @return
+	 */
+	@RequestMapping("user/{userno}")
+	public User queryUserByBianHao(@PathVariable String userno){
+		return biz.queryUserByBianHao(userno);
+	}
+	
+	/**
 	 * 根据用户编码删除对象
 	 * @param userno
 	 * @return
@@ -60,6 +73,34 @@ public class UserAction {
 	@RequestMapping("{userno}")
 	public int removeUserByUserNo(@PathVariable String userno){
 		return biz.removeUserByUserNo(userno);
+	}
+	
+	/**
+	 * 新增用戶信息
+	 * @param user
+	 * @return
+	 */
+	@PostMapping("user")
+	public Map<String,String> addUser(@RequestBody User user){
+		Map<String, String> message = new HashMap<String, String>();
+		biz.addUser(user);
+		message.put("code", "200");
+		message.put("msg", "ok");
+		return message;
+	}
+	
+	/**
+	 * 修改用户信息
+	 * @param record
+	 * @return
+	 */
+	@RequestMapping("record")
+	public Map<String,String> modifyUser(@RequestBody User record){
+		Map<String, String> message = new HashMap<String, String>();
+		biz.modifyUser(record);
+		message.put("code", "200");
+		message.put("msg", "ok");
+		return message;
 	}
 	
 	

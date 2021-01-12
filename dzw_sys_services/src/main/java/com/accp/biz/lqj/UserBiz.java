@@ -30,12 +30,21 @@ public class UserBiz {
 	}
 	
 	/**
-	 * 根据用户编码查询
+	 * 根据用户编码模糊查询
 	 * @param userno
 	 * @return
 	 */
 	public List<User> queryUserByUserNo(String userno){
 		return dao.queryUserByUserNo(userno);
+	}
+	
+	/**
+	 * 根据用户编码查询对象
+	 * @param userno
+	 * @return
+	 */
+	public User queryUserByBianHao(String userno){
+		return dao.queryUserByBianHao(userno);
 	}
 	
 	/**
@@ -45,6 +54,24 @@ public class UserBiz {
 	 */
 	public int removeUserByUserNo(String userno){
 		return dao.deleteByPrimaryKey(userno);
+	}
+	
+	/**
+	 * 新增用户信息
+	 * @param user
+	 * @return
+	 */
+	public int addUser(User user){
+		return dao.insert(user);
+	}
+	
+	/**
+	 * 修改用户信息
+	 * @param record
+	 * @return
+	 */
+	public int modifyUser(User record){
+		return dao.updateByPrimaryKey(record);
 	}
 	
 	
