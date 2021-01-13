@@ -30,9 +30,9 @@
     where userno = #{userno}
   </delete>
   <insert id="insert">
-    insert into user (userno, 
+    insert into user (armemberid,userno, 
       username, userphone, useraddress,usertime,usercomment)
-    values (#{user.userno,jdbcType=VARCHAR}, 
+    values (#{user.armemberid},#{user.userno,jdbcType=VARCHAR}, 
       #{user.username,jdbcType=VARCHAR}, #{user.userphone,jdbcType=VARCHAR}, #{user.useraddress,jdbcType=VARCHAR}, 
       #{user.usertime,jdbcType=DATE},#{user.usercomment,jdbcType=VARCHAR}
       )

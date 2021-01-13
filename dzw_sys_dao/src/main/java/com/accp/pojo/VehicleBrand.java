@@ -30,4 +30,24 @@ public class VehicleBrand {
     public void setVbrandname(String vbrandname) {
         this.vbrandname = vbrandname == null ? null : vbrandname.trim();
     }
+
+	public VehicleBrand(Integer vbrandid, String vbrandno, String vbrandname) {
+		super();
+		this.vbrandid = vbrandid;
+		this.vbrandno = vbrandno;
+		this.vbrandname = vbrandname;
+	}
+
+	public VehicleBrand() {
+		super();
+	}
+
+	public VehicleBrand(String vbrandno, String vbrandname) {
+		super();
+		this.vbrandno = vbrandno;
+		this.vbrandname = vbrandname;
+	}
+    
+    
+    
 }

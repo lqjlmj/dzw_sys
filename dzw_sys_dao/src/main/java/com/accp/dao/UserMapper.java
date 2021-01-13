@@ -37,7 +37,7 @@ public interface UserMapper {
     int deleteByPrimaryKey(@Param("userno")String userno);
     
     /**
-     * 新增用户信息
+             * 新增用户信息
      * @param record
      * @return
      */

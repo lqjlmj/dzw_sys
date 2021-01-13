@@ -20,4 +20,23 @@ public class EngineType {
     public void setEnginetypename(String enginetypename) {
         this.enginetypename = enginetypename == null ? null : enginetypename.trim();
     }
+
+	public EngineType(Integer enginetypeid, String enginetypename) {
+		super();
+		this.enginetypeid = enginetypeid;
+		this.enginetypename = enginetypename;
+	}
+
+	public EngineType() {
+		super();
+	}
+
+	public EngineType(String enginetypename) {
+		super();
+		this.enginetypename = enginetypename;
+	}
+    
+	
+    
+    
 }

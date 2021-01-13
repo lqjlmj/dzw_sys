@@ -20,7 +20,18 @@
     from vehicletype
     where vtypeid = #{vtypeid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <select id="SelectVehicleTypeAll" resultType="com.accp.pojo.VehicleTypeVo">
+  	
+SELECT ve.*,en.enginetypename,vebr.`vbrandname` FROM `vehicletype` AS ve , `enginetype` AS en , `vehiclebrand` AS vebr 
+WHERE ve.enginetypeid = en.enginetypeid AND vebr.`vbrandid` = ve.vbrandid 
+  </select>
+  
+  <select id="selectByIdVtypeIdKey" resultType="com.accp.pojo.VehicleTypeVo">
+	SELECT ve.*,en.enginetypename,vebr.`vbrandname` FROM `vehicletype` AS ve , `enginetype` AS en , `vehiclebrand` AS vebr 
+	WHERE ve.enginetypeid = en.enginetypeid AND vebr.`vbrandid` = ve.vbrandid AND `vtypeid` = #{vtypeid}
+  </select>
+  
+  <delete id="removedeleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from vehicletype
     where vtypeid = #{vtypeid,jdbcType=INTEGER}
   </delete>
@@ -32,87 +43,93 @@
       #{vtypename,jdbcType=VARCHAR}, #{vprice,jdbcType=REAL}, #{vdate,jdbcType=DATE}, 
       #{vpower,jdbcType=INTEGER}, #{fuelmark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.accp.pojo.VehicleType" >
+  
+  <insert id="addinsertSelective">
     insert into vehicletype
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="vtypeid != null" >
-        vtypeid,
-      </if>
-      <if test="enginetypeid != null" >
+   
+      <if test="vehitype.enginetypeid != null" >
         enginetypeid,
       </if>
-      <if test="vtypeno != null" >
+      <if test="vehitype.vtypeno != null" >
         vtypeno,
       </if>
-      <if test="vtypename != null" >
+      <if test="vehitype.vtypename != null" >
         vtypename,
       </if>
-      <if test="vprice != null" >
+      <if test="vehitype.vprice != null" >
         vprice,
       </if>
-      <if test="vdate != null" >
+      <if test="vehitype.vdate != null" >
         vdate,
       </if>
-      <if test="vpower != null" >
+      <if test="vehitype.vpower != null" >
         vpower,
       </if>
-      <if test="fuelmark != null" >
+      <if test="vehitype.fuelmark != null" >
         fuelmark,
+      </if>
+       <if test="vehitype.vbrandid != null" >
+        vbrandid,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="vtypeid != null" >
-        #{vtypeid,jdbcType=INTEGER},
+    
+      <if test="vehitype.enginetypeid != null" >
+        #{vehitype.enginetypeid,jdbcType=INTEGER},
       </if>
-      <if test="enginetypeid != null" >
-        #{enginetypeid,jdbcType=INTEGER},
+      <if test="vehitype.vtypeno != null" >
+        #{vehitype.vtypeno,jdbcType=VARCHAR},
       </if>
-      <if test="vtypeno != null" >
-        #{vtypeno,jdbcType=VARCHAR},
+      <if test="vehitype.vtypename != null" >
+        #{vehitype.vtypename,jdbcType=VARCHAR},
       </if>
-      <if test="vtypename != null" >
-        #{vtypename,jdbcType=VARCHAR},
+      <if test="vehitype.vprice != null" >
+        #{vehitype.vprice,jdbcType=REAL},
       </if>
-      <if test="vprice != null" >
-        #{vprice,jdbcType=REAL},
+      <if test="vehitype.vdate != null" >
+        #{vehitype.vdate,jdbcType=DATE},
       </if>
-      <if test="vdate != null" >
-        #{vdate,jdbcType=DATE},
+      <if test="vehitype.vpower != null" >
+        #{vehitype.vpower,jdbcType=INTEGER},
       </if>
-      <if test="vpower != null" >
-        #{vpower,jdbcType=INTEGER},
+      <if test="vehitype.fuelmark != null" >
+        #{vehitype.fuelmark,jdbcType=VARCHAR},
       </if>
-      <if test="fuelmark != null" >
-        #{fuelmark,jdbcType=VARCHAR},
+       <if test="vehitype.vbrandid != null" >
+        #{vehitype.vbrandid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.VehicleType" >
+  <update id="modifyByPrimaryKeySelective" parameterType="com.accp.pojo.VehicleType" >
     update vehicletype
     <set >
-      <if test="enginetypeid != null" >
-        enginetypeid = #{enginetypeid,jdbcType=INTEGER},
+      <if test="vehitype.enginetypeid != null" >
+        enginetypeid = #{vehitype.enginetypeid,jdbcType=INTEGER},
       </if>
-      <if test="vtypeno != null" >
-        vtypeno = #{vtypeno,jdbcType=VARCHAR},
+      <if test="vehitype.vtypeno != null" >
+        vtypeno = #{vehitype.vtypeno,jdbcType=VARCHAR},
       </if>
-      <if test="vtypename != null" >
-        vtypename = #{vtypename,jdbcType=VARCHAR},
+      <if test="vehitype.vtypename != null" >
+        vtypename = #{vehitype.vtypename,jdbcType=VARCHAR},
       </if>
-      <if test="vprice != null" >
-        vprice = #{vprice,jdbcType=REAL},
+      <if test="vehitype.vprice != null" >
+        vprice = #{vehitype.vprice,jdbcType=REAL},
       </if>
-      <if test="vdate != null" >
-        vdate = #{vdate,jdbcType=DATE},
+      <if test="vehitype.vdate != null" >
+        vdate = #{vehitype.vdate,jdbcType=DATE},
       </if>
-      <if test="vpower != null" >
-        vpower = #{vpower,jdbcType=INTEGER},
+      <if test="vehitype.vpower != null" >
+        vpower = #{vehitype.vpower,jdbcType=INTEGER},
       </if>
-      <if test="fuelmark != null" >
-        fuelmark = #{fuelmark,jdbcType=VARCHAR},
+      <if test="vehitype.fuelmark != null" >
+        fuelmark = #{vehitype.fuelmark,jdbcType=VARCHAR},
+      </if>
+      <if test="vehitype.vbrandid != null" >
+      	vbrandid = #{vehitype.vbrandid,jdbcType=INTEGER},
       </if>
     </set>
-    where vtypeid = #{vtypeid,jdbcType=INTEGER}
+    where vtypeid = #{vehitype.vtypeid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.accp.pojo.VehicleType" >
     update vehicletype
@@ -123,6 +140,7 @@
       vdate = #{vdate,jdbcType=DATE},
       vpower = #{vpower,jdbcType=INTEGER},
       fuelmark = #{fuelmark,jdbcType=VARCHAR}
+      
     where vtypeid = #{vtypeid,jdbcType=INTEGER}
   </update>
 </mapper>
