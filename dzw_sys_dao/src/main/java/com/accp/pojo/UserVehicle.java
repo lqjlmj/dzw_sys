@@ -2,6 +2,8 @@ package com.accp.pojo;
 
 import java.util.Date;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class UserVehicle {
     private Integer uvehicleid;
 
@@ -20,9 +22,11 @@ public class UserVehicle {
     private String driverphone;
 
     private Integer umileage;
-
+    
+    @JSONField(format = "yyyy-MM-dd")
     private Date registereddate;
-
+    
+    @JSONField(format = "yyyy-MM-dd")
     private Date buydate;
 
     public Integer getUvehicleid() {

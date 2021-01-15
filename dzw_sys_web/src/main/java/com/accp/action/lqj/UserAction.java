@@ -48,11 +48,11 @@ public class UserAction {
 	@RequestMapping("moHu")
 	public Map<String,Object> queryUserByUserNo(String userno){
 		Map<String, Object> map = new HashMap<String, Object>();
-		  map.put("code", "0");
-		  map.put("count", biz.queryUserCount());
-		  map.put("msg","");
-		  map.put("data",biz.queryUserByUserNo(userno));
-		  return map;
+		map.put("code", "0");
+		map.put("count", biz.queryUserCount());
+		map.put("msg","");
+		map.put("data",biz.queryUserByUserNo(userno));
+		return map;
 	}
 	
 	/**

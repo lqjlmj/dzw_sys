@@ -1,6 +1,7 @@
 package com.accp.action.lmf;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,11 @@ public class VehicelBrandAction {
 	@PostMapping("modifyupdateByPrimaryKeySelective")
 	public int modifyupdateByPrimaryKeySelective(String vbrandno,String vbrandname,Integer vbrandid) {
 		return vebiz.modifyupdateByPrimaryKeySelective(vbrandno, vbrandname, vbrandid);
+	}
+	
+	@GetMapping("queryAllBrand")
+	public List<VehicleBrand> queryAllBrand(){
+		return vebiz.selectQueryAllVehicle();
 	}
 	
 }

@@ -27,6 +27,10 @@ public interface UserMapper {
 	 */
 	User queryUserByBianHao(@Param("userno")String userno);
 	
+	/**
+	 * 查询总条数
+	 * @return
+	 */
 	int queryUserCount();
 	
 	/**
@@ -37,7 +41,7 @@ public interface UserMapper {
     int deleteByPrimaryKey(@Param("userno")String userno);
     
     /**
-             * 新增用户信息
+     * 新增用户信息
      * @param record
      * @return
      */

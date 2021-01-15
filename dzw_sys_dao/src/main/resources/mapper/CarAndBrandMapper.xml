@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.CarAndBrandMapper">
+	<select id="queryAllCarAndBrand" resultType="com.accp.vo.CarAndBrand">
+		SELECT u.*,v.`vbrandname`
+		FROM uservehicle AS u
+		JOIN vehiclebrand AS v ON u.`vbrandid`=v.`vbrandid`
+	</select>
+	<select id="queryCount" resultType="int">
+		SELECT COUNT(*)
+		FROM uservehicle AS u
+		JOIN vehiclebrand AS v ON u.`vbrandid`=v.`vbrandid`
+	</select>
+	<select id="queryAllCarByMoHu" resultType="com.accp.vo.CarAndBrand">
+		SELECT u.*,v.*
+		FROM uservehicle AS u
+		JOIN vehiclebrand AS v ON u.`vbrandid`=v.`vbrandid`
+		<where>
+  			<if test="ulicense != null" >
+        		AND ulicense LIKE '%${ulicense}%'
+      		</if>
+  		</where>
+	</select>
+	<delete id="removeCarById">
+		DELETE FROM uservehicle WHERE uvehicleid=#{uvehicleid}
+	</delete>
+	<insert id="addCar">
+		insert into uservehicle (vbrandid,ulicense, 
+        resdriver, driverphone, umileage, 
+        registereddate, buydate)
+		values (#{car.vbrandid,jdbcType=INTEGER}, #{car.ulicense,jdbcType=VARCHAR}, 
+        #{car.resdriver,jdbcType=VARCHAR}, #{car.driverphone,jdbcType=VARCHAR}, #{car.umileage,jdbcType=INTEGER}, 
+        #{car.registereddate,jdbcType=DATE}, #{car.buydate,jdbcType=DATE})
+	</insert>
+	<select id="queryCarByUlicense" resultType="com.accp.vo.CarAndBrand">
+		SELECT * FROM uservehicle WHERE ulicense=#{ulicense}
+	</select>
+	<update id="modifyCarByUlicense">
+		update uservehicle
+    set vbrandid = #{record.vbrandid,jdbcType=INTEGER},
+      resdriver = #{record.resdriver,jdbcType=VARCHAR},
+      driverphone = #{record.driverphone,jdbcType=VARCHAR},
+      umileage = #{record.umileage,jdbcType=INTEGER},
+      registereddate = #{record.registereddate,jdbcType=DATE},
+      buydate = #{record.buydate,jdbcType=DATE}
+    where ulicense = #{record.ulicense,jdbcType=VARCHAR}
+	</update>
+	
+</mapper>
