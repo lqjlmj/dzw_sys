@@ -1,6 +1,8 @@
 package com.accp.pojo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
@@ -18,7 +20,18 @@ public class Jurisdiction {
 
     private String createby;
     
-    public Jurisdiction() {
+    private List<SyFunction> syFunctions= new ArrayList<SyFunction>();
+    
+
+	public List<SyFunction> getSyFunctions() {
+		return syFunctions;
+	}
+
+	public void setSyFunctions(List<SyFunction> syFunctions) {
+		this.syFunctions = syFunctions;
+	}
+
+	public Jurisdiction() {
 		super();
 	}
     
@@ -48,6 +61,18 @@ public class Jurisdiction {
 		this.jurstatus = jurstatus;
 		this.createdate = createdate;
 		this.createby = createby;
+	}
+
+	public Jurisdiction(Integer jurisdictionid, String jurisdictionname, String jurisdictioncode, Integer jurstatus,
+			Date createdate, String createby, List<SyFunction> syFunctions) {
+		super();
+		this.jurisdictionid = jurisdictionid;
+		this.jurisdictionname = jurisdictionname;
+		this.jurisdictioncode = jurisdictioncode;
+		this.jurstatus = jurstatus;
+		this.createdate = createdate;
+		this.createby = createby;
+		this.syFunctions = syFunctions;
 	}
 
 	public Integer getJurisdictionid() {

@@ -3,6 +3,7 @@ package com.accp.dao;
 import com.accp.pojo.Armember;
 
 public interface ArmemberMapper {
+	
     int deleteByPrimaryKey(Integer armemberid);
 
     int insert(Armember record);

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.JiGongAndXingJiMapper">
+	<select id="queryAllJiGongAndXingJi" resultType="com.accp.vo.JiGongAndXingJi">
+		SELECT a.*,s.* 
+		FROM armember AS a
+		JOIN starlevel AS s ON a.`starid`=s.`starid`
+	</select>
+	<insert id="addJiGong">
+		insert into armember(ararmemberno,armembername,starid,ararmembersex,arphone,araddress)
+        values(#{jg.ararmemberno,jdbcType=VARCHAR},#{jg.armembername,jdbcType=VARCHAR},
+        #{jg.starid,jdbcType=INTEGER},#{jg.ararmembersex,jdbcType=INTEGER}, 
+        #{jg.arphone,jdbcType=VARCHAR},#{jg.araddress,jdbcType=VARCHAR})
+	</insert>
+	
+	<delete id="removeJiGongById">
+		DELETE FROM armember WHERE armemberid=#{armemberid}
+	</delete>
+	
+</mapper>

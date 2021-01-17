@@ -1,17 +1,14 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Department;
 
 public interface DepartmentMapper {
-    int deleteByPrimaryKey(Integer deid);
-
-    int insert(Department record);
-
-    int insertSelective(Department record);
-
-    Department selectByPrimaryKey(Integer deid);
-
-    int updateByPrimaryKeySelective(Department record);
-
-    int updateByPrimaryKey(Department record);
+	
+	/**
+	 * 下拉列表查询显示
+	 * @return
+	 */
+	List<Department> selectDAll();
 }

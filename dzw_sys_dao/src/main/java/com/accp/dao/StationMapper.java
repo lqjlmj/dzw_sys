@@ -1,17 +1,14 @@
 package com.accp.dao;
 
+import java.util.List;
+
 import com.accp.pojo.Station;
 
 public interface StationMapper {
     int deleteByPrimaryKey(Integer stationid);
 
-    int insert(Station record);
+    int insertStation(Station record);
 
-    int insertSelective(Station record);
+    List<Station> selectStationAll();
 
-    Station selectByPrimaryKey(Integer stationid);
-
-    int updateByPrimaryKeySelective(Station record);
-
-    int updateByPrimaryKey(Station record);
 }

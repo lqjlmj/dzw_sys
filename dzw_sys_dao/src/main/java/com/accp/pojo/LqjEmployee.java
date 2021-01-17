@@ -2,7 +2,9 @@ package com.accp.pojo;
 
 import java.util.Date;
 
-public class Employee {
+import com.alibaba.fastjson.annotation.JSONField;
+
+public class LqjEmployee {
     private Integer eid;
 
     private Integer jurisdictionid;
@@ -34,7 +36,8 @@ public class Employee {
     private String eemail;
 
     private String eaddress;
-
+    
+    @JSONField(format = "yyyy-MM-dd")
     private Date einputdate;
 
     private String ecurriculumvitae;
@@ -45,54 +48,47 @@ public class Employee {
 
     private Integer deid;
     
-    private Dimissiontext dim;
-    
-    private Department depart;
-    
-    private Starlevel starlevel;
-    
-    public Starlevel getStarlevel() {
-		return starlevel;
+    private Jurisdiction jurisdiction;
+
+	public LqjEmployee() {
+		super();
 	}
 
-	public void setStarlevel(Starlevel starlevel) {
-		this.starlevel = starlevel;
+	public LqjEmployee(Integer eid, Integer jurisdictionid, Integer shopid, Integer etypeid, Integer staffaeid,
+			Integer stationid, Integer dimissionid, Integer groupid, String eno, String ename, String eaccount,
+			String epwd, Integer esex, String ephone, String eemail, String eaddress, Date einputdate,
+			String ecurriculumvitae, String eimage, String eidentity, Integer deid, Jurisdiction jurisdiction) {
+		super();
+		this.eid = eid;
+		this.jurisdictionid = jurisdictionid;
+		this.shopid = shopid;
+		this.etypeid = etypeid;
+		this.staffaeid = staffaeid;
+		this.stationid = stationid;
+		this.dimissionid = dimissionid;
+		this.groupid = groupid;
+		this.eno = eno;
+		this.ename = ename;
+		this.eaccount = eaccount;
+		this.epwd = epwd;
+		this.esex = esex;
+		this.ephone = ephone;
+		this.eemail = eemail;
+		this.eaddress = eaddress;
+		this.einputdate = einputdate;
+		this.ecurriculumvitae = ecurriculumvitae;
+		this.eimage = eimage;
+		this.eidentity = eidentity;
+		this.deid = deid;
+		this.jurisdiction = jurisdiction;
 	}
 
-	public Group getGroup1() {
-		return group1;
+	public Jurisdiction getJurisdiction() {
+		return jurisdiction;
 	}
 
-	public void setGroup1(Group group1) {
-		this.group1 = group1;
-	}
-
-	private Group group1;
-    
-    public Department getDepart() {
-		return depart;
-	}
-
-	public void setDepart(Department depart) {
-		this.depart = depart;
-	}
-
-	public Station getStation() {
-		return station;
-	}
-
-	public void setStation(Station station) {
-		this.station = station;
-	}
-
-	private Station station;
-
-    public Dimissiontext getDim() {
-		return dim;
-	}
-
-	public void setDim(Dimissiontext dim) {
-		this.dim = dim;
+	public void setJurisdiction(Jurisdiction jurisdiction) {
+		this.jurisdiction = jurisdiction;
 	}
 
 	public Integer getEid() {

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.LoginMapper">
+	
+	<resultMap type="LqjEmployee" id="EmpMap">
+		<id column="eid" property="eid" />
+		<result column="etypeid" property="etypeid"/>
+		<result column="ename" property="ename"/>
+		<result column="eaccount" property="eaccount"/>
+		<result column="epwd" property="epwd"/>
+		<association property="jurisdiction" resultMap="JurMap"></association>
+	</resultMap>
+	<resultMap type="jurisdiction" id="JurMap">
+		<id column="jurisdictionid" property="jurisdictionid"/>
+		<result column="jurisdictionname" property="jurisdictionname"/>
+		<result column="jurisdictioncode" property="jurisdictioncode"/>
+		<result column="jurstatus" property="jurstatus"/>
+		<collection property="syFunctions" ofType="syfunction">
+			<id column="syfunctionid" property="syfunctionid"/>
+			<result column="syfunctionname" property="syfunctionname"/>
+			<result column="syfunctioncode" property="syfunctioncode"/>
+			<result column="uplv" property="uplv"/>
+			<result column="sypage" property="sypage"/>
+			<result column="createdate" property="createdate"/>
+			<association property="parentSyfun" column="uplv" select="selectParentSyfun"></association>
+		</collection>
+	</resultMap>
+	
+	<select id="selectParentSyfun" resultType="syfunction">
+		select * from `syfunction` where `syfunctionid` =#{0}
+	</select>
+
+	<select id="login" resultMap="EmpMap">
+		SELECT
+		e.`eid`,
+		e.`etypeid`,
+		e.`ename`,
+		e.`eaccount`,
+		e.`epwd`,
+		j.`jurisdictionid`,
+		j.`jurisdictionname`,
+		j.`jurisdictioncode`,
+		j.`jurstatus`,
+		s.`syfunctionid`,
+		s.`syfunctionname`,
+		s.`syfunctioncode`,
+		s.`createdate`,
+		s.`uplv`
+		FROM `employee` e
+		JOIN `jurisdiction` j
+		ON e.`jurisdictionid`= j.`jurisdictionid`
+		INNER JOIN `qxconnect` q ON q.`jurisdictionid` = j.`jurisdictionid`
+		INNER JOIN `syfunction` s ON s.`syfunctionid` = q.`syfunctionid`
+		WHERE `eaccount`=#{eaccount} AND `epwd`=#{epwd} AND etypeid=1
+	</select>
+	
+</mapper>
